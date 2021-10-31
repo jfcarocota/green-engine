@@ -1,7 +1,7 @@
 #include "Player.hh"
 #include "InputSystem.hh"
 
-Player::Player(std::string textureUrl, float playerScale, int width, int height, int column, int row,
+Player::Player(const char* textureUrl, float playerScale, float width, float height, int column, int row,
 float posX, float posY, float playerSpeed, b2BodyType bodyType, b2World*& world, sf::RenderWindow*& window) :
 GameObject(textureUrl, playerScale, width, height, column, row, posX, posY, bodyType, world, window)
 {
@@ -15,7 +15,7 @@ Player::~Player()
 
 sf::Sprite* Player::GetSprite() const
 {
-  return sprite;
+  return drawable->GetSprite();
 }
 
 void Player::Update(float& deltaTime)
@@ -39,7 +39,7 @@ void Player::Move()
 }
 void Player::FlipSprite()
 {
-  sprite->setScale(InputSystem::Axis().x > 0 ? scale : InputSystem::Axis().x < 0 ? -scale :
-  sprite->getScale().x,
-  scale);
+  drawable->GetSprite()->setScale(InputSystem::Axis().x > 0 ? drawable->GetScale() : InputSystem::Axis().x < 0 ? -drawable->GetScale() :
+  drawable->GetSprite()->getScale().x,
+  drawable->GetScale());
 }

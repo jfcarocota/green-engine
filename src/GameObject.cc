@@ -3,12 +3,12 @@
 
 class Game;
 
-GameObject::GameObject(std::string textureUrl, float scale, int width, int height, int column, int row, 
+GameObject::GameObject(const char* textureUrl, float scale, float width, float height, int column, int row, 
 float posX, float posY, b2BodyType bodyType, b2World*& world, sf::RenderWindow*& window)
 {
   this->world = world;
   this->window = window;
-  this->scale = scale;
+  /*this->scale = scale;
   this->width = width;
   this->height = height;
   this->column = column;
@@ -21,14 +21,16 @@ float posX, float posY, b2BodyType bodyType, b2World*& world, sf::RenderWindow*&
   sprite = new sf::Sprite(*texture, sf::IntRect(column * width, row * height, width, height));
   sprite->setPosition(posX, posY);
   sprite->setColor(sf::Color::White);
-  sprite->setScale(scale, scale);
+  sprite->setScale(scale, scale);*/
+
+  drawable = new Drawable(textureUrl, sf::Vector2f(posX, posY), scale, width, height, column, row);
 
   rigidbody = new Rigidbody(world, bodyType,
-  new b2Vec2(sprite->getPosition().x, sprite->getPosition().y),
-  width * scale, height * scale, 1, 0, 0, new b2Vec2(sprite->getOrigin().x, sprite->getOrigin().y),
+  new b2Vec2(drawable->GetPosition().x, drawable->GetPosition().y),
+  width * scale, height * scale, 1, 0, 0, new b2Vec2(drawable->GetSprite()->getOrigin().x, drawable->GetSprite()->getOrigin().y),
   0.f, (void*) this);
 
-  sprite->setOrigin(width / 2, height / 2);
+  drawable->GetSprite()->setOrigin(width / 2, height / 2);
 
   //Game::AddGameObject(this);
 }
@@ -36,8 +38,7 @@ float posX, float posY, b2BodyType bodyType, b2World*& world, sf::RenderWindow*&
 GameObject::~GameObject()
 {
   delete rigidbody;
-  delete sprite;
-  delete texture;
+  delete drawable;
 }
 
 void GameObject::Start()
@@ -47,12 +48,12 @@ void GameObject::Start()
 
 void GameObject::Update(float& deltaTime)
 {
-  sprite->setPosition(rigidbody->GetPositionSFML());
+  drawable->SetPosition(rigidbody->GetPositionSFML());
 }
 
 void GameObject::Draw()
 {
-  window->draw(*sprite);
+  window->draw(*drawable->GetSprite());
 }
 
 void GameObject::Input()
@@ -62,7 +63,7 @@ void GameObject::Input()
 
 sf::Sprite* GameObject::GetSprite() const
 {
-  return sprite;
+  return drawable->GetSprite();
 }
 
 std::string GameObject::GetTagName() const
