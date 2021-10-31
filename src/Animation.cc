@@ -2,14 +2,19 @@
 
 Animation::Animation(){}
 
-Animation::Animation(Drawable*& drawable, int startFrame, int endFrame, float animationDelay, int currentAnimation)
+Animation::Animation(Drawable*& drawable, const char* animUrl)
 {
+  reader = new std::ifstream();
+  reader->open(animUrl);
+
   this->drawable = drawable;
-  this->startFrame = startFrame;
-  this->endFrame = endFrame;
-  this->animationDelay = animationDelay;
-  this->currentAnimation = currentAnimation;
+  *reader >> startFrame;
+  *reader >> endFrame;
+  *reader >> animationDelay;
+  *reader >> currentAnimation;
   animationIndex = startFrame;
+
+  reader->close();
 }
 
 void Animation::Play(float& deltaTime)
@@ -17,7 +22,7 @@ void Animation::Play(float& deltaTime)
   currentTime += deltaTime;
 
   drawable->RebindRect(animationIndex * drawable->GetWidth(),
-  currentAnimation * drawable->GetHeight(), drawable->GetWidth(), 
+  currentAnimation * drawable->GetHeight(), drawable->GetWidth(),
   drawable->GetHeight());
 
   if(currentTime >= animationDelay)

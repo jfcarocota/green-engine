@@ -30,8 +30,8 @@ void TileGroup::GenerateMap()
   {
     for(int x{}; x < COLS; x++)
     {
-      int posX{scale * tileWidth * x};
-      int posY{scale * tileHeight * y};
+      float posX{scale * tileWidth * x};
+      float posY{scale * tileHeight * y};
 
       int coord{};
       *reader >> coord;

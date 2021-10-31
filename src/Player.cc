@@ -8,8 +8,10 @@ GameObject(textureUrl, playerScale, width, height, column, row, posX, posY, body
   this->playerSpeed = playerSpeed;
   rigidbody->FreezeRotation(true);
 
-  idleAnimation = new Animation(drawable, 0, 5, 0.05f, 5);
-  runAnimation = new Animation(drawable, 0, 5, 0.08f, 6);
+  animationSystem = new AnimationSystem();
+
+  animationSystem->AddAnimation("idle", new Animation(drawable, "assets/animations/player/idle.anim"));
+  animationSystem->AddAnimation("walk", new Animation(drawable, "assets/animations/player/walk.anim"));
 }
 
 Player::~Player()
@@ -23,16 +25,17 @@ sf::Sprite* Player::GetSprite() const
 
 void Player::Update(float& deltaTime)
 {
+  animationSystem->Update(deltaTime);
   GameObject::Update(deltaTime);
   Move();
 
   if(std::abs(InputSystem::Axis().x) > 0 || std::abs(InputSystem::Axis().y) > 0)
   {
-    runAnimation->Play(deltaTime);
+    animationSystem->Play("walk");
   }
   else
   {
-    idleAnimation->Play(deltaTime);
+    animationSystem->Play("idle");
   }
 }
 

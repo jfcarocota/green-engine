@@ -1,6 +1,7 @@
 #include "CommonHeaders.hh"
 #include "Player.hh"
 #include "TileGroup.hh"
+#include "Candle.hh"
 
 
 sf::CircleShape* circle{new sf::CircleShape()};
@@ -10,8 +11,8 @@ TextObject* textObj1{new TextObject(ASSETS_FONT_ARCADECLASSIC, 14, sf::Color::Wh
 sf::Clock* gameClock{new sf::Clock()};
 float deltaTime{};
 Player* player1{};
+Candle* candle1{};
 GameObject* chest1{};
-GameObject* light1{};
 
 TileGroup* tileGroup{};
 Tile* tile1{};
@@ -36,17 +37,11 @@ Game::Game()
   gameObjectsDeleteList = new std::vector<GameObject*>();
 
   player1 = new Player(ASSETS_SPRITES, 4.f, 16.f, 16.f, 0, 5, 500, 300, 200.f, b2BodyType::b2_dynamicBody, world, window);
-  player1->SetTagName("Player");
   chest1 = new GameObject(ASSETS_SPRITES, 4.f, 16.f, 16.f, 6, 1, 300, 500, b2BodyType::b2_staticBody, world, window);
-  chest1->SetTagName("chest");
-  light1 = new GameObject(ASSETS_SPRITES, 4.f, 16.f, 16.f, 6, 3, 500, 500, b2BodyType::b2_staticBody, world, window);
-  light1->SetTagName("light");
+  candle1 = new Candle(ASSETS_SPRITES, 4.f, 16.f, 16.f, 6, 3, 500, 500, b2BodyType::b2_staticBody, world, window);
   tileGroup = new TileGroup(window, 12, 12, ASSETS_MAPS, 4.f, 16, 16, ASSETS_TILES);
 
   contactEventManager = new ContactEventManager(gameObjects, gameObjectsDeleteList);
-
-
-  //lightIdle = new Animation(light1->GetSprite(), 6, 11, 0.1f, 3);
 }
 
 Game::~Game()
@@ -61,9 +56,13 @@ void Game::Start()
   drawPhysics->SetFlags(flags);
   world->SetContactListener(contactEventManager);
 
+  player1->SetTagName("Player");
+  chest1->SetTagName("chest");
+  candle1->SetTagName("light");
+
   AddGameObject(player1);
   AddGameObject(chest1);
-  AddGameObject(light1);
+  AddGameObject(candle1);
 
   textObj1->SetTextStr("Hello game engine");
 

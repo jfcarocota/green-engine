@@ -8,20 +8,7 @@ float posX, float posY, b2BodyType bodyType, b2World*& world, sf::RenderWindow*&
 {
   this->world = world;
   this->window = window;
-  /*this->scale = scale;
-  this->width = width;
-  this->height = height;
-  this->column = column;
-  this->row = row;
-  this->posX = posX;
-  this->posY = posY;
-
-  texture = new sf::Texture();
-  texture->loadFromFile(textureUrl);
-  sprite = new sf::Sprite(*texture, sf::IntRect(column * width, row * height, width, height));
-  sprite->setPosition(posX, posY);
-  sprite->setColor(sf::Color::White);
-  sprite->setScale(scale, scale);*/
+  tagName = "Default";
 
   drawable = new Drawable(textureUrl, sf::Vector2f(posX, posY), scale, width, height, column, row);
 
