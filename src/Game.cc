@@ -1,6 +1,5 @@
 #include "CommonHeaders.hh"
 #include "Player.hh"
-#include "Animation.hh"
 #include "TileGroup.hh"
 
 
@@ -13,8 +12,6 @@ float deltaTime{};
 Player* player1{};
 GameObject* chest1{};
 GameObject* light1{};
-Animation* idleAnimation{new Animation()};
-Animation* runAnimation{new Animation()};
 
 TileGroup* tileGroup{};
 Tile* tile1{};
@@ -49,7 +46,7 @@ Game::Game()
   contactEventManager = new ContactEventManager(gameObjects, gameObjectsDeleteList);
 
 
-  lightIdle = new Animation(light1->GetSprite(), 6, 11, 0.1f, 3);
+  //lightIdle = new Animation(light1->GetSprite(), 6, 11, 0.1f, 3);
 }
 
 Game::~Game()
@@ -69,8 +66,6 @@ void Game::Start()
   AddGameObject(light1);
 
   textObj1->SetTextStr("Hello game engine");
-  idleAnimation = new Animation(player1->GetSprite(), 0, 5, 0.05f, 5);
-  runAnimation = new Animation(player1->GetSprite(), 0, 5, 0.08f, 6);
 
   /*circle->setRadius(2.f);
   circle->setFillColor(sf::Color::Green);
@@ -102,16 +97,7 @@ void Game::Update()
 
   //circle->setPosition(player1->GetSprite()->getPosition());
 
-  lightIdle->Play(deltaTime);
-
-  if(std::abs(InputSystem::Axis().x) > 0 || std::abs(InputSystem::Axis().y) > 0)
-  {
-    runAnimation->Play(deltaTime);
-  }
-  else
-  {
-    idleAnimation->Play(deltaTime);
-  }
+  //lightIdle->Play(deltaTime);
 }
 
 void Game::MainLoop()

@@ -1,19 +1,20 @@
 #pragma once
 #include "SFML/Graphics.hpp"
+#include "Drawable.hh"
 
 class Animation
 {
 private:
-  sf::Sprite* sprite;
   int animationIndex{};
   int startFrame{};
   int endFrame{};
   float animationDelay{};
   float currentTime{};
   int currentAnimation{};
+  Drawable* drawable{};
 public:
   Animation();
-  Animation(sf::Sprite* sprite, int startFrame, int endFrame, float animationDelay, int currentAnimation);
+  Animation(Drawable*& drawable, int startFrame, int endFrame, float animationDelay, int currentAnimation);
 
   void Play(float& deltaTime);
   ~Animation();

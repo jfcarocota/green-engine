@@ -2,9 +2,9 @@
 
 Animation::Animation(){}
 
-Animation::Animation(sf::Sprite* sprite, int startFrame, int endFrame, float animationDelay, int currentAnimation)
+Animation::Animation(Drawable*& drawable, int startFrame, int endFrame, float animationDelay, int currentAnimation)
 {
-  this->sprite = sprite;
+  this->drawable = drawable;
   this->startFrame = startFrame;
   this->endFrame = endFrame;
   this->animationDelay = animationDelay;
@@ -16,9 +16,9 @@ void Animation::Play(float& deltaTime)
 {
   currentTime += deltaTime;
 
-  sprite->setTextureRect(sf::IntRect(animationIndex * sprite->getTextureRect().width,
-  currentAnimation * sprite->getTextureRect().height, sprite->getTextureRect().width, 
-  sprite->getTextureRect().height));
+  drawable->RebindRect(animationIndex * drawable->GetWidth(),
+  currentAnimation * drawable->GetHeight(), drawable->GetWidth(), 
+  drawable->GetHeight());
 
   if(currentTime >= animationDelay)
   {

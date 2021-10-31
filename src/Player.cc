@@ -7,6 +7,9 @@ GameObject(textureUrl, playerScale, width, height, column, row, posX, posY, body
 {
   this->playerSpeed = playerSpeed;
   rigidbody->FreezeRotation(true);
+
+  idleAnimation = new Animation(drawable, 0, 5, 0.05f, 5);
+  runAnimation = new Animation(drawable, 0, 5, 0.08f, 6);
 }
 
 Player::~Player()
@@ -22,6 +25,15 @@ void Player::Update(float& deltaTime)
 {
   GameObject::Update(deltaTime);
   Move();
+
+  if(std::abs(InputSystem::Axis().x) > 0 || std::abs(InputSystem::Axis().y) > 0)
+  {
+    runAnimation->Play(deltaTime);
+  }
+  else
+  {
+    idleAnimation->Play(deltaTime);
+  }
 }
 
 void Player::Draw()
@@ -39,7 +51,7 @@ void Player::Move()
 }
 void Player::FlipSprite()
 {
-  drawable->GetSprite()->setScale(InputSystem::Axis().x > 0 ? drawable->GetScale() : InputSystem::Axis().x < 0 ? -drawable->GetScale() :
-  drawable->GetSprite()->getScale().x,
+  GetSprite()->setScale(InputSystem::Axis().x > 0 ? drawable->GetScale() : InputSystem::Axis().x < 0 ? -drawable->GetScale() :
+  GetSprite()->getScale().x,
   drawable->GetScale());
 }
