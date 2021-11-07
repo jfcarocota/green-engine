@@ -1,1 +1,1 @@
-g++ -I ../include -c ../src/*.cc
+g++ -I ../include -c ../src/engine/*.cc
