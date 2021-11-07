@@ -53,16 +53,9 @@ void ValidateCommand(std::string& command, char* argv[])
       }
       *writer << currentLine << '\n';
     }
-    //std::filebuf* fileBuffer = reader->rdbuf();
-    //std::string fileData{std::string((std::istreambuf_iterator<char>(*reader)), std::istreambuf_iterator<char>())};
-    //std::replace(fileData.begin(), fileData.end(),REPLACE_WORD, scriptName);
-
-    //*writer << reader->rdbuf();
 
     writer->close();
     reader->close();
-
-    //reader->open("include/" + scriptName + ".hh");
 
     delete writer;
     delete reader;
