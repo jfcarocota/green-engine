@@ -1,0 +1,15 @@
+#pragma once
+#include "GameObject.hh"
+
+class EntityTemplate : public GameObject
+{
+private:
+
+public:
+  EntityTemplate (const char* textureUrl, float scale, float width, float height, int column, int row, float posX, float posY,
+  b2BodyType bodyType, b2World*& world, sf::RenderWindow*& window);
+  ~EntityTemplate ();
+
+  void Update(float& deltaTime) override;
+  void Draw() override;
+};

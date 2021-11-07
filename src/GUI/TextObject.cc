@@ -1,4 +1,4 @@
-#include "TextObject.hh"
+#include "GUI/TextObject.hh"
 
 TextObject::TextObject(std::string fontUrl, int size, sf::Color color, sf::Uint32 style)
 {

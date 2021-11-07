@@ -6,12 +6,16 @@ float posX, float posY, float playerSpeed, b2BodyType bodyType, b2World*& world,
 GameObject(textureUrl, playerScale, width, height, column, row, posX, posY, bodyType, world, window)
 {
   this->playerSpeed = playerSpeed;
+  stepsDelay = 0.3f;
   rigidbody->FreezeRotation(true);
 
   animationSystem = new AnimationSystem();
+  audioSystem = new AudioSystem();
 
   animationSystem->AddAnimation("idle", new Animation(drawable, "assets/animations/player/idle.anim"));
   animationSystem->AddAnimation("walk", new Animation(drawable, "assets/animations/player/walk.anim"));
+
+  audioSystem->AddAudioClip("steps", new AudioClip("assets/audio/steps.ogg", 4.f));
 }
 
 Player::~Player()
@@ -29,8 +33,18 @@ void Player::Update(float& deltaTime)
   GameObject::Update(deltaTime);
   Move();
 
+  if(stepsTimer < stepsDelay)
+  {
+    stepsTimer += deltaTime;
+  }
+
   if(std::abs(InputSystem::Axis().x) > 0 || std::abs(InputSystem::Axis().y) > 0)
   {
+    if(stepsTimer >= stepsDelay)
+    {
+      audioSystem->Play("steps");
+      stepsTimer = 0.f;
+    }
     animationSystem->Play("walk");
   }
   else

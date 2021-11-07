@@ -3,9 +3,6 @@
 #include "TileGroup.hh"
 #include "Candle.hh"
 
-
-sf::CircleShape* circle{new sf::CircleShape()};
-
 TextObject* textObj1{new TextObject(ASSETS_FONT_ARCADECLASSIC, 14, sf::Color::White, sf::Text::Bold)};
 
 sf::Clock* gameClock{new sf::Clock()};
@@ -48,7 +45,6 @@ Game::~Game()
 {
 }
 
-//Starting things
 void Game::Start()
 {
   flags += b2Draw::e_shapeBit;
@@ -65,10 +61,6 @@ void Game::Start()
   AddGameObject(candle1);
 
   textObj1->SetTextStr("Hello game engine");
-
-  /*circle->setRadius(2.f);
-  circle->setFillColor(sf::Color::Green);
-  circle->setOutlineColor(sf::Color::Green);*/
 }
 
 void Game::Initialize()
@@ -83,7 +75,6 @@ void Game::UpdatePhysics()
   world->Step(deltaTime, 8, 8);
 }
 
-//Logic, animations, etc
 void Game::Update()
 {
   deltaTime = gameClock->getElapsedTime().asSeconds();
@@ -94,9 +85,6 @@ void Game::Update()
     gameObject->Update(deltaTime);
   }
 
-  //circle->setPosition(player1->GetSprite()->getPosition());
-
-  //lightIdle->Play(deltaTime);
 }
 
 void Game::MainLoop()
@@ -133,14 +121,9 @@ void Game::Render()
   window->display();
 }
 
-//Drawing sprites or geometry.
 void Game::Draw()
 {
-  //player1->Draw();
-  //window->draw(*circle);
-
   tileGroup->Draw();
-  //tile1->Draw();
 
   for(auto &gameObject : *gameObjects)
   {
@@ -148,13 +131,13 @@ void Game::Draw()
   }
 
   window->draw(*textObj1->GetText());
-  world->DebugDraw();
+  //world->DebugDraw();
 }
 
 //Keyboard, joysticks, etc.
 void Game::Input()
 {
-  //player1->Move();
+
 }
 
 void Game::Destroy()

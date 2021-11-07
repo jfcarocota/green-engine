@@ -2,7 +2,7 @@
 #include "Constants.hh"
 #include "InputSystem.hh"
 #include "Animation.hh"
-#include "TextObject.hh"
+#include "GUI/TextObject.hh"
 #include "Rigidbody.hh"
 #include "DrawPhysics.hh"
 #include<box2d/box2d.h>
