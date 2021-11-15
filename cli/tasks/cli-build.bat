@@ -1,0 +1,1 @@
+g++ -std=c++17 -Icli/include cli/src/*.cc -o cli/bin/gameengine.exe

@@ -1,44 +1,17 @@
+#pragma once
 #include<iostream>
 #include<string>
 #include<fstream>
 
-
-void ErrorCommand();
-void ValidateCommand(std::string& command, char* argv[]);
-
-int main(int argc, char* argv[])
-{
-  std::string command{argv[1]};
-
-  switch (argc)
-  {
-  case 3:
-    ValidateCommand(command, argv);
-    break;
-
-  default:
-    ErrorCommand();
-    break;
-  }
-  return 0;
-}
-
-void ErrorCommand()
-{
-  std::cout << "command not recognized" << std::endl;
-}
-
-void ValidateCommand(std::string& command, char* argv[])
+void CreateGameObject(std::string assetName)
 {
   std::string REPLACE_WORD{"EntityTemplate"};
 
-  if(command.compare("gameobject"))
-  {
     std::ofstream* writer{new std::ofstream()};
     std::ifstream* reader{new std::ifstream()};
     reader->open("cli/templates/gameobject.template");
 
-    std::string scriptName{argv[2]};
+    std::string scriptName{assetName};
     std::string script{};
     std::string currentLine{};
 
@@ -97,5 +70,4 @@ void ValidateCommand(std::string& command, char* argv[])
 
     delete writer;
     delete reader;
-  }
 }
