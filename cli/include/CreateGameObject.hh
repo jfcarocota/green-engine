@@ -5,7 +5,7 @@
 
 void CreateGameObject(std::string assetName)
 {
-  std::string REPLACE_WORD{"EntityTemplate"};
+    std::string REPLACE_WORD{"EntityTemplate"};
 
     std::ofstream* writer{new std::ofstream()};
     std::ifstream* reader{new std::ifstream()};

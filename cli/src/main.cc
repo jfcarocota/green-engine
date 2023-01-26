@@ -16,7 +16,9 @@ int main(int argc, char* argv[])
   case 3:
     ValidateCommand(command, argv);
     break;
-
+  case 7:
+    ValidateCommand(command, argv);
+    break;
   default:
     ErrorCommand();
     break;
@@ -34,7 +36,14 @@ void ValidateCommand(std::string& command, char* argv[])
   std::string assetName = argv[2];
   if(command == "gameobject")
   {
-    std::cout << "commans" << argv[0] << " " << argv[1] << " " << argv[2] << std::endl;
+    //std::cout << "commans" << argv[0] << " " << argv[1] << " " << argv[2] << std::endl;
+    CreateGameObject(assetName);
+    return;
+  }
+
+  if(command == "animation")
+  {
+    std::cout << "commands" << argv[0] << " " << argv[1] << " " << argv[2] << std::endl;
     CreateGameObject(assetName);
     return;
   }

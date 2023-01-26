@@ -131,7 +131,7 @@ void Game::Draw()
   }
 
   window->draw(*textObj1->GetText());
-  //world->DebugDraw();
+  world->DebugDraw();
 }
 
 //Keyboard, joysticks, etc.
