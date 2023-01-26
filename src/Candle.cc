@@ -5,7 +5,8 @@ b2BodyType bodyType, b2World*& world, sf::RenderWindow*& window) :
 GameObject(textureUrl, scale, width, height, column, row, posX, posY, bodyType, world, window)
 {
   animationSystem = new AnimationSystem();
-  animationSystem->AddAnimation("idle", new Animation(drawable, "assets/animations/candle/idle.anim"));
+  //animationSystem->AddAnimation("idle", new Animation(drawable, "assets/animations/candle/idle.anim"));
+  animationSystem->AddAnimation("idle", new Animation(drawable, "assets/animations/candle/idle.json"));
 }
 
 Candle::~Candle()

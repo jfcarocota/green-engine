@@ -1,6 +1,5 @@
 #include<iostream>
 #include "Game.hh"
-#include "json/json.h"
 
 int main()
 {

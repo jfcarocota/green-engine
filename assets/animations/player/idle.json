@@ -1,0 +1,10 @@
+{
+  "actor": "player",
+  "animation-name": "idle",
+  "animation":{
+    "startFrame": 0,
+    "endFrame": 5,
+    "delay": 0.05,
+    "row": 5
+  }
+}

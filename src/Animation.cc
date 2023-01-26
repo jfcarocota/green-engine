@@ -1,4 +1,5 @@
 #include "Animation.hh"
+#include<iostream>
 
 Animation::Animation(){}
 
@@ -6,12 +7,14 @@ Animation::Animation(Drawable*& drawable, const char* animUrl)
 {
   reader = new std::ifstream();
   reader->open(animUrl);
+  root = Json::Value();
 
   this->drawable = drawable;
-  *reader >> startFrame;
-  *reader >> endFrame;
-  *reader >> animationDelay;
-  *reader >> currentAnimation;
+  *reader >> root;
+  startFrame = root["animation"]["startFrame"].asInt();
+  endFrame = root["animation"]["endFrame"].asInt();
+  animationDelay = root["animation"]["delay"].asFloat();
+  currentAnimation = root["animation"]["row"].asInt();
   animationIndex = startFrame;
 
   reader->close();

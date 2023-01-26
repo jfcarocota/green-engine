@@ -2,6 +2,7 @@
 #include "SFML/Graphics.hpp"
 #include "Drawable.hh"
 #include<fstream>
+#include "json/json.h"
 
 class Animation
 {
@@ -14,6 +15,8 @@ private:
   int currentAnimation{};
   Drawable* drawable{};
   std::ifstream* reader{};
+  Json::Value root{};
+
 public:
   Animation();
   Animation(Drawable*& drawable, const char* animUrl);

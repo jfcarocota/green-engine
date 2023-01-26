@@ -12,8 +12,8 @@ GameObject(textureUrl, playerScale, width, height, column, row, posX, posY, body
   animationSystem = new AnimationSystem();
   audioSystem = new AudioSystem();
 
-  animationSystem->AddAnimation("idle", new Animation(drawable, "assets/animations/player/idle.anim"));
-  animationSystem->AddAnimation("walk", new Animation(drawable, "assets/animations/player/walk.anim"));
+  animationSystem->AddAnimation("idle", new Animation(drawable, "assets/animations/player/idle.json"));
+  animationSystem->AddAnimation("walk", new Animation(drawable, "assets/animations/player/walk.json"));
 
   audioSystem->AddAudioClip("steps", new AudioClip("assets/audio/steps.ogg", 4.f));
 }

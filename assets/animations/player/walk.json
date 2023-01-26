@@ -1,0 +1,10 @@
+{
+  "actor": "player",
+  "animation-name": "walk",
+  "animation":{
+    "startFrame": 0,
+    "endFrame": 5,
+    "delay": 0.08,
+    "row": 6
+  }
+}
