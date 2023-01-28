@@ -10,6 +10,7 @@
 				"-Iinclude",
 				"-Isrc/dynamics",
 				"-Isrc/lib_json",
+				"src/Components/*.cc",
 				"src/*cc",
 				"src/GUI/*.cc",
 				"src/collision/*.cpp",

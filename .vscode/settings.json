@@ -51,6 +51,15 @@
     "fstream": "cpp",
     "deque": "cpp",
     "queue": "cpp",
-    "sstream": "cpp"
+    "sstream": "cpp",
+    "array": "cpp",
+    "cctype": "cpp",
+    "clocale": "cpp",
+    "functional": "cpp",
+    "iomanip": "cpp",
+    "list": "cpp",
+    "stack": "cpp",
+    "unordered_map": "cpp",
+    "xhash": "cpp"
   }
 }

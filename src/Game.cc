@@ -2,6 +2,9 @@
 #include "Player.hh"
 #include "TileGroup.hh"
 #include "Candle.hh"
+#include "Components/EntityManager.hh"
+
+//EntityManager entityManager{};
 
 TextObject* textObj1{new TextObject(ASSETS_FONT_ARCADECLASSIC, 14, sf::Color::White, sf::Text::Bold)};
 
