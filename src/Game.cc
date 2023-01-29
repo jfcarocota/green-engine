@@ -40,15 +40,16 @@ Game::Game()
   gameObjects = new std::vector<GameObject*>();
   gameObjectsDeleteList = new std::vector<GameObject*>();
 
-  //hero = new Hero(entityManager);
   //player1 = new Player(ASSETS_SPRITES, 4.f, 16.f, 16.f, 0, 5, 500, 300, 200.f, b2BodyType::b2_dynamicBody, world, window);
   //chest1 = new GameObject(ASSETS_SPRITES, 4.f, 16.f, 16.f, 6, 1, 300, 500, b2BodyType::b2_staticBody, world, window);
   //candle1 = new Candle(ASSETS_SPRITES, 4.f, 16.f, 16.f, 6, 3, 500, 500, b2BodyType::b2_staticBody, world, window);
   tileGroup = new TileGroup(window, 12, 12, ASSETS_MAPS, 4.f, 16, 16, ASSETS_TILES);
-  Entity& hero(entityManager.AddEntity("hero"));
 
-  TransformComponent heroTrs = hero.AddComponent<TransformComponent>(500.f, 300.f, 16.f, 16.f, 4.f);
-  hero.AddComponent<SpriteComponent>("assets/sprites.png", heroTrs, 0, 5);
+  hero = new Hero(entityManager);
+  //Entity& hero(entityManager.AddEntity("hero"));
+
+  //TransformComponent heroTrs = hero.AddComponent<TransformComponent>(500.f, 300.f, 16.f, 16.f, 4.f);
+  //hero.AddComponent<SpriteComponent>("assets/sprites.png", heroTrs, 0, 5);
 
   //contactEventManager = new ContactEventManager(gameObjects, gameObjectsDeleteList);
 }
