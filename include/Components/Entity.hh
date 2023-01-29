@@ -1,4 +1,6 @@
 #pragma once
+
+#include<SFML/Graphics.hpp>
 #include <vector>
 #include <string>
 #include<map>
@@ -20,7 +22,7 @@ public:
   Entity(EntityManager& entityManager);
   Entity(EntityManager& entityManager, std::string name);
   void Update(float& deltaTime);
-  void Render();
+  void Render(sf::RenderWindow& window);
   void Destroy();
   bool IsActive() const;
   ~Entity();

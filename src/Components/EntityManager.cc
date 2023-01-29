@@ -31,11 +31,11 @@ void EntityManager::Update(float& deltaTime)
   }
 }
 
-void EntityManager::Render()
+void EntityManager::Render(sf::RenderWindow& window)
 {
   for(auto& entity : entities)
   {
-    entity->Render();
+    entity->Render(window);
   }
 }
 

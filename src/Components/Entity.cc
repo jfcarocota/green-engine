@@ -10,6 +10,11 @@ Entity::Entity(EntityManager& entityManager, std::string name): entityManager(en
    this->isActive = true;
 }
 
+Entity::~Entity()
+{
+   
+}
+
  void Entity::Update(float& deltaTime)
  {
    for(auto& component : components)
@@ -23,11 +28,11 @@ Entity::Entity(EntityManager& entityManager, std::string name): entityManager(en
     this->isActive = false;
  }
 
- void Entity::Render()
+ void Entity::Render(sf::RenderWindow& window)
  {
    for(auto& component : components)
    {
-      component->Render();
+      component->Render(window);
    }
  }
 

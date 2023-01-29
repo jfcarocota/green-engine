@@ -21,3 +21,38 @@ void TransformComponent::Update(float& deltaTime)
 {
 
 }
+
+float TransformComponent::GetWidth() const
+{
+  return width;
+}
+float TransformComponent::GetHeight() const
+{
+  return height;
+}
+float TransformComponent::GetScale() const
+{
+  return scale;
+}
+
+void TransformComponent::SetWidth(float width)
+{
+  this->width = width;
+}
+void TransformComponent::SetHeight(float height)
+{
+  this->height = height;
+}
+void TransformComponent::SetScale(float scale)
+{
+  this->scale = scale;
+}
+
+sf::Vector2f TransformComponent::GetPosition() const
+{
+  return position;
+}
+void TransformComponent::SetPosition(sf::Vector2f position)
+{
+  this->position = position;
+}

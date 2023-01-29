@@ -3,8 +3,11 @@
 #include "TileGroup.hh"
 #include "Candle.hh"
 #include "Components/EntityManager.hh"
+#include "Hero.hh"
+#include "Components/TransformComponent.hh"
+#include "Components/SpriteComponent.hh"
 
-//EntityManager entityManager{};
+EntityManager entityManager;
 
 TextObject* textObj1{new TextObject(ASSETS_FONT_ARCADECLASSIC, 14, sf::Color::White, sf::Text::Bold)};
 
@@ -13,6 +16,7 @@ float deltaTime{};
 Player* player1{};
 Candle* candle1{};
 GameObject* chest1{};
+Hero* hero{};
 
 TileGroup* tileGroup{};
 Tile* tile1{};
@@ -36,12 +40,17 @@ Game::Game()
   gameObjects = new std::vector<GameObject*>();
   gameObjectsDeleteList = new std::vector<GameObject*>();
 
-  player1 = new Player(ASSETS_SPRITES, 4.f, 16.f, 16.f, 0, 5, 500, 300, 200.f, b2BodyType::b2_dynamicBody, world, window);
-  chest1 = new GameObject(ASSETS_SPRITES, 4.f, 16.f, 16.f, 6, 1, 300, 500, b2BodyType::b2_staticBody, world, window);
-  candle1 = new Candle(ASSETS_SPRITES, 4.f, 16.f, 16.f, 6, 3, 500, 500, b2BodyType::b2_staticBody, world, window);
+  //hero = new Hero(entityManager);
+  //player1 = new Player(ASSETS_SPRITES, 4.f, 16.f, 16.f, 0, 5, 500, 300, 200.f, b2BodyType::b2_dynamicBody, world, window);
+  //chest1 = new GameObject(ASSETS_SPRITES, 4.f, 16.f, 16.f, 6, 1, 300, 500, b2BodyType::b2_staticBody, world, window);
+  //candle1 = new Candle(ASSETS_SPRITES, 4.f, 16.f, 16.f, 6, 3, 500, 500, b2BodyType::b2_staticBody, world, window);
   tileGroup = new TileGroup(window, 12, 12, ASSETS_MAPS, 4.f, 16, 16, ASSETS_TILES);
+  Entity& hero(entityManager.AddEntity("hero"));
 
-  contactEventManager = new ContactEventManager(gameObjects, gameObjectsDeleteList);
+  TransformComponent heroTrs = hero.AddComponent<TransformComponent>(500.f, 300.f, 16.f, 16.f, 4.f);
+  hero.AddComponent<SpriteComponent>("assets/sprites.png", heroTrs, 0, 5);
+
+  //contactEventManager = new ContactEventManager(gameObjects, gameObjectsDeleteList);
 }
 
 Game::~Game()
@@ -51,17 +60,17 @@ Game::~Game()
 void Game::Start()
 {
   flags += b2Draw::e_shapeBit;
-  world->SetDebugDraw(drawPhysics);
-  drawPhysics->SetFlags(flags);
-  world->SetContactListener(contactEventManager);
+  //world->SetDebugDraw(drawPhysics);
+  //drawPhysics->SetFlags(flags);
+  //world->SetContactListener(contactEventManager);
 
-  player1->SetTagName("Player");
-  chest1->SetTagName("chest");
-  candle1->SetTagName("light");
+  //player1->SetTagName("Player");
+  //chest1->SetTagName("chest");
+  //candle1->SetTagName("light");
 
-  AddGameObject(player1);
-  AddGameObject(chest1);
-  AddGameObject(candle1);
+  //AddGameObject(player1);
+  //AddGameObject(chest1);
+  //AddGameObject(candle1);
 
   textObj1->SetTextStr("Hello game engine");
 }
@@ -83,11 +92,11 @@ void Game::Update()
   deltaTime = gameClock->getElapsedTime().asSeconds();
   gameClock->restart();
 
-  for(auto &gameObject : *gameObjects)
+  /*for(auto &gameObject : *gameObjects)
   {
     gameObject->Update(deltaTime);
-  }
-
+  }*/
+  entityManager.Update(deltaTime);
 }
 
 void Game::MainLoop()
@@ -112,15 +121,16 @@ void Game::MainLoop()
 
 void Game::Render()
 {
-  for(auto& gameobject: *gameObjectsDeleteList)
+  /*for(auto& gameobject: *gameObjectsDeleteList)
   {
       gameObjects->erase(std::remove(gameObjects->begin(), gameObjects->end(), gameobject), gameObjects->end());
       delete gameobject;
   }
-  gameObjectsDeleteList->clear();
+  gameObjectsDeleteList->clear();*/
 
   window->clear(sf::Color::Black);
-  Draw();
+  //Draw();
+  entityManager.Render(*window);
   window->display();
 }
 
@@ -128,13 +138,13 @@ void Game::Draw()
 {
   tileGroup->Draw();
 
-  for(auto &gameObject : *gameObjects)
+  /*for(auto &gameObject : *gameObjects)
   {
     gameObject->Draw();
-  }
+  }*/
 
   window->draw(*textObj1->GetText());
-  world->DebugDraw();
+  //world->DebugDraw();
 }
 
 //Keyboard, joysticks, etc.
