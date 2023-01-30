@@ -59,5 +59,5 @@ void TransformComponent::SetPosition(sf::Vector2f position)
 
 void TransformComponent::Translate(sf::Vector2f direction)
 {
-  position = position + direction;
+  position += direction;
 }

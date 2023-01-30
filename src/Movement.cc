@@ -17,5 +17,5 @@ void Movement::Initialize()
 
 void Movement::Update(float& deltaTime)
 {
-  transform.Translate(InputSystem::Axis() * deltaTime);
+  transform.Translate(InputSystem::Axis() * moveSpeed * deltaTime);
 }
