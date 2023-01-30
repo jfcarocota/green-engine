@@ -1,12 +1,14 @@
 #pragma once
 
 #include "Components/EntityManager.hh"
-#include "Components/EntityBehaviour.hh"
+#include "Components/Component.hh"
 
-class Hero: public EntityBehaviour
+class Hero: public Component
 {
 private:
+  
 public:
-  Hero(EntityManager& entityManager);
+  Hero();
   ~Hero();
+  void Initialize() override;
 };

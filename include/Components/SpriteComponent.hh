@@ -6,6 +6,7 @@
 class SpriteComponent: public Component
 {
 private:
+  const TransformComponent& transform;
   sf::Texture texture{};
   sf::Sprite sprite{};
   const char* textureUrl{};

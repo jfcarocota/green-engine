@@ -1,6 +1,7 @@
 #include "Components/SpriteComponent.hh"
 
-SpriteComponent::SpriteComponent(const char* textureUrl, TransformComponent& transform, unsigned int col, unsigned int row)
+SpriteComponent::SpriteComponent(const char* textureUrl, TransformComponent& transform, unsigned int col, unsigned int row):
+transform(transform)
 {
   this->textureUrl = textureUrl;
   this->col = col;
@@ -20,7 +21,7 @@ SpriteComponent::~SpriteComponent()
 
 void SpriteComponent::Update(float& deltaTime)
 {
-
+  sprite.setPosition(transform.GetPosition());
 }
 
 void SpriteComponent::Render(sf::RenderWindow& window)

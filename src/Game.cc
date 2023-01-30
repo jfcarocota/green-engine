@@ -6,6 +6,7 @@
 #include "Hero.hh"
 #include "Components/TransformComponent.hh"
 #include "Components/SpriteComponent.hh"
+#include "Components/Entity.hh"
 
 EntityManager entityManager;
 
@@ -16,7 +17,6 @@ float deltaTime{};
 Player* player1{};
 Candle* candle1{};
 GameObject* chest1{};
-Hero* hero{};
 
 TileGroup* tileGroup{};
 Tile* tile1{};
@@ -44,12 +44,12 @@ Game::Game()
   //chest1 = new GameObject(ASSETS_SPRITES, 4.f, 16.f, 16.f, 6, 1, 300, 500, b2BodyType::b2_staticBody, world, window);
   //candle1 = new Candle(ASSETS_SPRITES, 4.f, 16.f, 16.f, 6, 3, 500, 500, b2BodyType::b2_staticBody, world, window);
   tileGroup = new TileGroup(window, 12, 12, ASSETS_MAPS, 4.f, 16, 16, ASSETS_TILES);
-
-  hero = new Hero(entityManager);
-  //Entity& hero(entityManager.AddEntity("hero"));
-
-  //TransformComponent heroTrs = hero.AddComponent<TransformComponent>(500.f, 300.f, 16.f, 16.f, 4.f);
-  //hero.AddComponent<SpriteComponent>("assets/sprites.png", heroTrs, 0, 5);
+  Entity& heroEntity{entityManager.AddEntity("hero")};
+  heroEntity.AddComponent<Hero>();
+  /*TransformComponent& transform = entity.AddComponent<TransformComponent>(500.f, 300.f, 16.f, 16.f, 4.f);
+  entity.AddComponent<SpriteComponent>("assets/sprites.png", transform, 0, 5);*/
+  
+  //hero = new Hero(entityManager);
 
   //contactEventManager = new ContactEventManager(gameObjects, gameObjectsDeleteList);
 }

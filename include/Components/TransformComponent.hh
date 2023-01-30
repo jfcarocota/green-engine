@@ -23,5 +23,5 @@ public:
   void SetWidth(float width);
   void SetHeight(float height);
   void SetScale(float scale);
-
+  void Translate(sf::Vector2f direction);
 };
