@@ -11,9 +11,12 @@ private:
   sf::Sprite sprite{};
   const char* textureUrl{};
   unsigned int col{}, row{};
+  bool flipTexture{false};
 public:
   SpriteComponent(const char* textureUrl, TransformComponent& transform, unsigned int col, unsigned int row);
   ~SpriteComponent();
   void Update(float& deltaTime) override;
   void Render(sf::RenderWindow& window) override;
+  void SetFlipTexture(bool flip);
+  bool GetFliptexture() const;
 };

@@ -28,3 +28,14 @@ void SpriteComponent::Render(sf::RenderWindow& window)
 {
   window.draw(sprite);
 }
+
+void SpriteComponent::SetFlipTexture(bool flipTexture)
+{
+  this->flipTexture = flipTexture;
+  sprite.setScale(flipTexture ? -transform.GetScale(): transform.GetScale(), transform.GetScale());
+}
+
+bool SpriteComponent::GetFliptexture() const
+{
+  return flipTexture;
+}
