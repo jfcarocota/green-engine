@@ -1,7 +1,9 @@
 #include "Movement.hh"
 #include "InputSystem.hh"
+#include "Animation.hh"
 
-Movement::Movement(float moveSpeed, RigidBodyComponent& rigidbody): rigidbody(rigidbody)
+Movement::Movement(float moveSpeed, RigidBodyComponent& rigidbody, AnimatorComponent& animator):
+rigidbody(rigidbody), animator(animator)
 {
   this->moveSpeed = moveSpeed;
 }
@@ -12,7 +14,7 @@ Movement::~Movement()
 
 void Movement::Initialize()
 {
-
+  //animator.AddAnimation("idle", new Animation());
 }
 
 void Movement::Update(float& deltaTime)
@@ -20,6 +22,4 @@ void Movement::Update(float& deltaTime)
   sf::Vector2 direction = InputSystem::Axis() * moveSpeed;
 
   rigidbody.AddVelocity(b2Vec2(direction.x, direction.y));
-  //transform.Translate(InputSystem::Axis() * moveSpeed * deltaTime);
-  //rigidbody->GetBody()->SetLinearVelocity(b2Vec2(InputSystem::Axis().x * playerSpeed, InputSystem::Axis().y * playerSpeed));
 }
