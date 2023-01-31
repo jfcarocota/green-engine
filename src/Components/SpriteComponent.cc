@@ -13,6 +13,7 @@ transform(transform)
   sprite.setPosition(transform.GetPosition());
   sprite.setScale(sf::Vector2f(transform.GetScale(), transform.GetScale()));
   sprite.setColor(sf::Color::White);
+  sprite.setOrigin(transform.GetWidth() / 2, transform.GetHeight() / 2);
 }
 
 SpriteComponent::~SpriteComponent()
