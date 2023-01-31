@@ -45,7 +45,7 @@ Game::Game()
   //candle1 = new Candle(ASSETS_SPRITES, 4.f, 16.f, 16.f, 6, 3, 500, 500, b2BodyType::b2_staticBody, world, window);
   tileGroup = new TileGroup(window, 12, 12, ASSETS_MAPS, 4.f, 16, 16, ASSETS_TILES);
   Entity& heroEntity{entityManager.AddEntity("hero")};
-  heroEntity.AddComponent<Hero>();
+  heroEntity.AddComponent<Hero>(200.f, world);
   /*TransformComponent& transform = entity.AddComponent<TransformComponent>(500.f, 300.f, 16.f, 16.f, 4.f);
   entity.AddComponent<SpriteComponent>("assets/sprites.png", transform, 0, 5);*/
   
@@ -61,9 +61,9 @@ Game::~Game()
 void Game::Start()
 {
   flags += b2Draw::e_shapeBit;
-  //world->SetDebugDraw(drawPhysics);
-  //drawPhysics->SetFlags(flags);
-  //world->SetContactListener(contactEventManager);
+  world->SetDebugDraw(drawPhysics);
+  drawPhysics->SetFlags(flags);
+  world->SetContactListener(contactEventManager);
 
   //player1->SetTagName("Player");
   //chest1->SetTagName("chest");
@@ -132,6 +132,7 @@ void Game::Render()
   window->clear(sf::Color::Black);
   //Draw();
   entityManager.Render(*window);
+  world->DebugDraw();
   window->display();
 }
 

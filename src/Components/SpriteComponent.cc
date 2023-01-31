@@ -40,3 +40,8 @@ bool SpriteComponent::GetFliptexture() const
 {
   return flipTexture;
 }
+
+sf::Vector2f SpriteComponent::GetOrigin() const
+{
+  return sprite.getOrigin();
+}

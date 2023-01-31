@@ -19,4 +19,5 @@ public:
   void Render(sf::RenderWindow& window) override;
   void SetFlipTexture(bool flip);
   bool GetFliptexture() const;
+  sf::Vector2f GetOrigin() const;
 };
