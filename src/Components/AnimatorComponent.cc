@@ -9,6 +9,15 @@ AnimatorComponent::~AnimatorComponent()
 {
 }
 
+void AnimatorComponent::RefreshAnimationClip()
+{
+  animationIndex = currentAnimationClip.animationIndex;
+  startFrame = currentAnimationClip.startFrame;
+  endFrame = currentAnimationClip.endFrame;
+  animationDelay = currentAnimationClip.animationDelay;
+  currentAnimation = currentAnimationClip.currentAnimation;
+}
+
 void AnimatorComponent::Play(std::string animationName)
 {
   AnimationClip anim = animations.at(animationName);
@@ -18,11 +27,7 @@ void AnimatorComponent::Play(std::string animationName)
     currentAnimationName = animationName;
     currentAnimationClip = anim;
 
-    animationIndex = currentAnimationClip.animationIndex;
-    startFrame = currentAnimationClip.startFrame;
-    endFrame = currentAnimationClip.endFrame;
-    animationDelay = currentAnimationClip.animationDelay;
-    currentAnimation = currentAnimationClip.currentAnimation;
+    RefreshAnimationClip();
   }
 }
 
@@ -33,11 +38,7 @@ void AnimatorComponent::AddAnimation(std::string animationName, AnimationClip an
     currentAnimationName = animationName;
     currentAnimationClip = animationClip;
 
-    animationIndex = currentAnimationClip.animationIndex;
-    startFrame = currentAnimationClip.startFrame;
-    endFrame = currentAnimationClip.endFrame;
-    animationDelay = currentAnimationClip.animationDelay;
-    currentAnimation = currentAnimationClip.currentAnimation;
+    RefreshAnimationClip();
   }
   animations.insert({animationName, animationClip});
 }

@@ -30,4 +30,5 @@ public:
   void Play(std::string animationName);
   void AddAnimation(std::string animationName, AnimationClip animationClip);
   void Update(float& deltaTime) override;
+  void RefreshAnimationClip();
 };
