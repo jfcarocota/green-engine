@@ -1,15 +1,14 @@
 #pragma once
-#include "Components/EntityManager.hh"
 #include "Components/Component.hh"
+#include "Components/EntityManager.hh"
 #include<box2d/box2d.h>
 
-
-class Candle : public Component
+class Chest: public Component
 {
 private:
   b2World*& world;
 public:
-  Candle(b2World*& world);
-  ~Candle();
+  Chest(b2World*& world);
+  ~Chest();
   void Initialize() override;
 };

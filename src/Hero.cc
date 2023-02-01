@@ -6,9 +6,8 @@
 #include "Components/RigidBodyComponent.hh"
 #include "Components/AnimatorComponent.hh"
 
-Hero::Hero(float moveSpeed, b2World*& world)
+Hero::Hero(float moveSpeed, b2World*& world): world(world)
 {
-  this->world = world;
   this->moveSpeed = moveSpeed;
 }
 

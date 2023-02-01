@@ -5,9 +5,9 @@
 #include "Components/AnimatorComponent.hh"
 #include "AnimationClip.hh"
 
-Candle::Candle(b2World*& world)
+Candle::Candle(b2World*& world): world(world)
 {
-  this->world = world;
+
 }
 
 Candle::~Candle()

@@ -8,7 +8,7 @@ class Hero: public Component
 {
 private:
   float moveSpeed;
-  b2World* world;
+  b2World*& world;
 public:
   Hero(float moveSpeed, b2World*& world);
   ~Hero();

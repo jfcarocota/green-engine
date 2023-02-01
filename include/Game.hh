@@ -21,8 +21,6 @@ private:
   void Update();
   void Render();
   void Input();
-  void Start();
-  void Draw();
   void MainLoop();
   void Destroy();
   void UpdatePhysics();
@@ -32,5 +30,4 @@ public:
   ~Game();
   void Initialize();
 
-  void AddGameObject(GameObject* gameObject);
 };

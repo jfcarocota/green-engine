@@ -3,6 +3,7 @@
 #include "TileGroup.hh"
 #include "Candle.hh"
 #include "Hero.hh"
+#include "Chest.hh"
 #include "Components/EntityManager.hh"
 #include "Components/TransformComponent.hh"
 #include "Components/SpriteComponent.hh"
@@ -16,7 +17,8 @@ sf::Clock* gameClock{new sf::Clock()};
 float deltaTime{};
 
 Entity& hero{entityManager.AddEntity("hero")};
-Entity& candle1{entityManager.AddEntity("candle1")};
+Entity& candle1{entityManager.AddEntity("candle")};
+Entity& chest1{entityManager.AddEntity("chest")};
 
 TileGroup* tileGroup{};
 Tile* tile1{};
@@ -38,11 +40,11 @@ Game::Game()
   world = new b2World(*gravity);
   drawPhysics = new DrawPhysics(window);
 
-  //chest1 = new GameObject(ASSETS_SPRITES, 4.f, 16.f, 16.f, 6, 1, 300, 500, b2BodyType::b2_staticBody, world, window);
-  //tileGroup = new TileGroup(window, 12, 12, ASSETS_MAPS, 4.f, 16, 16, ASSETS_TILES);
+  tileGroup = new TileGroup(window, 12, 12, ASSETS_MAPS, 4.f, 16, 16, ASSETS_TILES);
 
   hero.AddComponent<Hero>(200.f, world);
   candle1.AddComponent<Candle>(world);
+  chest1.AddComponent<Chest>(world);
 
   contactEventManager = new ContactEventManager();
 }
@@ -51,7 +53,7 @@ Game::~Game()
 {
 }
 
-void Game::Start()
+void Game::Initialize()
 {
   flags += b2Draw::e_shapeBit;
   world->SetDebugDraw(drawPhysics);
@@ -59,11 +61,6 @@ void Game::Start()
   world->SetContactListener(contactEventManager);
 
   textObj1->SetTextStr("Hello game engine");
-}
-
-void Game::Initialize()
-{
-  Start();
   MainLoop();
 }
 
@@ -106,15 +103,10 @@ void Game::Render()
   window->clear(sf::Color::Black);
 
   window->draw(*textObj1->GetText());
-
+  tileGroup->Draw();
   entityManager.Render(*window);
   world->DebugDraw();
   window->display();
-}
-
-void Game::Draw()
-{
-  tileGroup->Draw();
 }
 
 //Keyboard, joysticks, etc.
@@ -127,9 +119,4 @@ void Game::Destroy()
 {
   delete window;
   delete event;
-}
-
-void Game::AddGameObject(GameObject* gameObject)
-{
-  //gameObjects->push_back(gameObject);
 }
