@@ -16,7 +16,7 @@ void AnimatorComponent::Play(std::string animationName)
   if(animationName != currentAnimationName)
   {
     currentAnimationName = animationName;
-    currentAnimationClip = currentAnimationClip;
+    currentAnimationClip = anim;
 
     animationIndex = currentAnimationClip.animationIndex;
     startFrame = currentAnimationClip.startFrame;
