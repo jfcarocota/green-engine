@@ -21,7 +21,7 @@ void Hero::Initialize()
   TransformComponent& transform = owner->AddComponent<TransformComponent>(500.f, 300.f, 16.f, 16.f, 4.f);
   SpriteComponent& sprite = owner->AddComponent<SpriteComponent>("assets/sprites.png", transform, 0, 5);
   RigidBodyComponent& rigidbody = owner->AddComponent<RigidBodyComponent>(world, b2BodyType::b2_dynamicBody,
-  1, 0, 0, 0.f, true, (void*) this, transform, sprite);
+  1, 0, 0, 0.f, true, (void*) owner, transform, sprite);
   AnimatorComponent& animator = owner->AddComponent<AnimatorComponent>(sprite, transform);
   owner->AddComponent<Movement>(moveSpeed, rigidbody, animator, transform, sprite);
   owner->AddComponent<FlipSprite>(sprite, transform);

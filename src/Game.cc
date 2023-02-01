@@ -2,8 +2,8 @@
 #include "Player.hh"
 #include "TileGroup.hh"
 #include "Candle.hh"
-#include "Components/EntityManager.hh"
 #include "Hero.hh"
+#include "Components/EntityManager.hh"
 #include "Components/TransformComponent.hh"
 #include "Components/SpriteComponent.hh"
 #include "Components/Entity.hh"
@@ -14,9 +14,10 @@ TextObject* textObj1{new TextObject(ASSETS_FONT_ARCADECLASSIC, 14, sf::Color::Wh
 
 sf::Clock* gameClock{new sf::Clock()};
 float deltaTime{};
-Player* player1{};
-Candle* candle1{};
-GameObject* chest1{};
+//Player* player1{};
+Entity& hero{entityManager.AddEntity("hero")};
+Entity& candle1{entityManager.AddEntity("candle1")};
+//GameObject* chest1{};
 
 TileGroup* tileGroup{};
 Tile* tile1{};
@@ -37,23 +38,19 @@ Game::Game()
   gravity = new b2Vec2(0.f, 0.f);
   world = new b2World(*gravity);
   drawPhysics = new DrawPhysics(window);
-  gameObjects = new std::vector<GameObject*>();
-  gameObjectsDeleteList = new std::vector<GameObject*>();
 
   //player1 = new Player(ASSETS_SPRITES, 4.f, 16.f, 16.f, 0, 5, 500, 300, 200.f, b2BodyType::b2_dynamicBody, world, window);
   //chest1 = new GameObject(ASSETS_SPRITES, 4.f, 16.f, 16.f, 6, 1, 300, 500, b2BodyType::b2_staticBody, world, window);
   //candle1 = new Candle(ASSETS_SPRITES, 4.f, 16.f, 16.f, 6, 3, 500, 500, b2BodyType::b2_staticBody, world, window);
-  tileGroup = new TileGroup(window, 12, 12, ASSETS_MAPS, 4.f, 16, 16, ASSETS_TILES);
-  Entity& heroEntity{entityManager.AddEntity("hero")};
-  Entity& candle1{entityManager.AddEntity("candle1")};
-  heroEntity.AddComponent<Hero>(200.f, world);
+  //tileGroup = new TileGroup(window, 12, 12, ASSETS_MAPS, 4.f, 16, 16, ASSETS_TILES);
+
+  hero.AddComponent<Hero>(200.f, world);
   candle1.AddComponent<Candle>(world);
+
   /*TransformComponent& transform = entity.AddComponent<TransformComponent>(500.f, 300.f, 16.f, 16.f, 4.f);
   entity.AddComponent<SpriteComponent>("assets/sprites.png", transform, 0, 5);*/
-  
-  //hero = new Hero(entityManager);
 
-  //contactEventManager = new ContactEventManager(gameObjects, gameObjectsDeleteList);
+  contactEventManager = new ContactEventManager();
 }
 
 Game::~Game()
@@ -165,5 +162,5 @@ void Game::Destroy()
 
 void Game::AddGameObject(GameObject* gameObject)
 {
-  gameObjects->push_back(gameObject);
+  //gameObjects->push_back(gameObject);
 }

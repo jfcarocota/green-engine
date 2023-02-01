@@ -17,8 +17,6 @@ private:
   b2Vec2* gravity{};
   b2World* world{};
   b2Draw* drawPhysics{};
-  std::vector<GameObject*>* gameObjects;
-  std::vector<GameObject*>* gameObjectsDeleteList;
 
   void Update();
   void Render();
