@@ -12,8 +12,8 @@ GameObject(textureUrl, playerScale, width, height, column, row, posX, posY, body
   animationSystem = new AnimationSystem();
   audioSystem = new AudioSystem();
 
-  animationSystem->AddAnimation("idle", new Animation(drawable, "assets/animations/player/idle.json"));
-  animationSystem->AddAnimation("walk", new Animation(drawable, "assets/animations/player/walk.json"));
+  //animationSystem->AddAnimation("idle", new Animation(drawable, "assets/animations/player/idle.json"));
+  //animationSystem->AddAnimation("walk", new Animation(drawable, "assets/animations/player/walk.json"));
 
   audioSystem->AddAudioClip("steps", new AudioClip("assets/audio/steps.ogg", 4.f));
 }
@@ -29,7 +29,7 @@ sf::Sprite* Player::GetSprite() const
 
 void Player::Update(float& deltaTime)
 {
-  animationSystem->Update(deltaTime);
+  //animationSystem->Update(deltaTime);
   GameObject::Update(deltaTime);
   Move();
 
@@ -45,11 +45,11 @@ void Player::Update(float& deltaTime)
       audioSystem->Play("steps");
       stepsTimer = 0.f;
     }
-    animationSystem->Play("walk");
+    //animationSystem->Play("walk");
   }
   else
   {
-    animationSystem->Play("idle");
+    //animationSystem->Play("idle");
   }
 }
 

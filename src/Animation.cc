@@ -1,15 +1,13 @@
 #include "Animation.hh"
 #include<iostream>
 
-Animation::Animation(){}
-
-Animation::Animation(Drawable*& drawable, const char* animUrl)
+Animation::Animation(SpriteComponent& sprite, TransformComponent& transform, const char* animUrl):
+sprite(sprite), transform(transform)
 {
   reader = new std::ifstream();
   reader->open(animUrl);
   root = Json::Value();
 
-  this->drawable = drawable;
   *reader >> root;
   startFrame = root["animation"]["startFrame"].asInt();
   endFrame = root["animation"]["endFrame"].asInt();
@@ -23,13 +21,13 @@ Animation::Animation(Drawable*& drawable, const char* animUrl)
 void Animation::Play(float& deltaTime)
 {
   currentTime += deltaTime;
+  sprite.RebindRectTexture(animationIndex * transform.GetWidth(),
+  currentAnimation * transform.GetHeight(), transform.GetWidth(),
+  transform.GetHeight());
 
-  drawable->RebindRect(animationIndex * drawable->GetWidth(),
-  currentAnimation * drawable->GetHeight(), drawable->GetWidth(),
-  drawable->GetHeight());
-
-  if(currentTime >= animationDelay)
+  if(currentTime > animationDelay)
   {
+    std::cout << "index: " << animationIndex;
     if(animationIndex == endFrame)
     {
       animationIndex = startFrame;

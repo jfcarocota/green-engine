@@ -45,3 +45,8 @@ sf::Vector2f SpriteComponent::GetOrigin() const
 {
   return sprite.getOrigin();
 }
+
+void SpriteComponent::RebindRectTexture(int col, int row, float width, float height)
+{
+  sprite.setTextureRect(sf::IntRect(col, row, width, height));
+}

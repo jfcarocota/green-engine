@@ -1,6 +1,7 @@
 #pragma once
 #include "SFML/Graphics.hpp"
-#include "Drawable.hh"
+#include "Components/SpriteComponent.hh"
+#include "Components/TransformComponent.hh"
 #include<fstream>
 #include "json/json.h"
 
@@ -13,13 +14,14 @@ private:
   float animationDelay{};
   float currentTime{};
   int currentAnimation{};
-  Drawable* drawable{};
+  SpriteComponent& sprite;
+  TransformComponent& transform;
   std::ifstream* reader{};
   Json::Value root{};
 
 public:
   Animation();
-  Animation(Drawable*& drawable, const char* animUrl);
+  Animation(SpriteComponent& sprite, TransformComponent& transform, const char* animUrl);
 
   void Play(float& deltaTime);
   ~Animation();

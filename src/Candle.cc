@@ -6,7 +6,7 @@ GameObject(textureUrl, scale, width, height, column, row, posX, posY, bodyType, 
 {
   animationSystem = new AnimationSystem();
   //animationSystem->AddAnimation("idle", new Animation(drawable, "assets/animations/candle/idle.anim"));
-  animationSystem->AddAnimation("idle", new Animation(drawable, "assets/animations/candle/idle.json"));
+  //animationSystem->AddAnimation("idle", new Animation(drawable, "assets/animations/candle/idle.json"));
 }
 
 Candle::~Candle()
@@ -15,10 +15,10 @@ Candle::~Candle()
 
 void Candle::Update(float& deltaTime)
 {
-  animationSystem->Update(deltaTime);
+  //animationSystem->Update(deltaTime);
   GameObject::Update(deltaTime);
 
-  animationSystem->Play("idle");
+  //animationSystem->Play("idle");
 }
 
 void Candle::Draw()

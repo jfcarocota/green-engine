@@ -20,4 +20,5 @@ public:
   void SetFlipTexture(bool flip);
   bool GetFliptexture() const;
   sf::Vector2f GetOrigin() const;
+  void RebindRectTexture(int col, int row, float width, float height);
 };
