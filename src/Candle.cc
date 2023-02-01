@@ -1,27 +1,27 @@
 #include "Candle.hh"
+#include "Components/TransformComponent.hh"
+#include "Components/SpriteComponent.hh"
+#include "Components/RigidBodyComponent.hh"
+#include "Components/AnimatorComponent.hh"
+#include "AnimationClip.hh"
 
-Candle::Candle(const char* textureUrl, float scale, float width, float height, int column, int row, float posX, float posY,
-b2BodyType bodyType, b2World*& world, sf::RenderWindow*& window) :
-GameObject(textureUrl, scale, width, height, column, row, posX, posY, bodyType, world, window)
+Candle::Candle(b2World*& world)
 {
-  animationSystem = new AnimationSystem();
-  //animationSystem->AddAnimation("idle", new Animation(drawable, "assets/animations/candle/idle.anim"));
-  //animationSystem->AddAnimation("idle", new Animation(drawable, "assets/animations/candle/idle.json"));
+  this->world = world;
 }
 
 Candle::~Candle()
 {
 }
 
-void Candle::Update(float& deltaTime)
+void Candle::Initialize()
 {
-  //animationSystem->Update(deltaTime);
-  GameObject::Update(deltaTime);
+  TransformComponent& transform = owner->AddComponent<TransformComponent>(500.f, 500.f, 16.f, 16.f, 4.f);
+  SpriteComponent& sprite = owner->AddComponent<SpriteComponent>("assets/sprites.png", transform, 0, 5);
+  RigidBodyComponent& rigidbody = owner->AddComponent<RigidBodyComponent>(world, b2BodyType::b2_staticBody,
+   1, 0, 0, 0.f, (void*) this, transform, sprite);
+  AnimatorComponent& animator = owner->AddComponent<AnimatorComponent>(sprite, transform);
 
-  //animationSystem->Play("idle");
-}
+  animator.AddAnimation("idle", AnimationClip("assets/animations/candle/idle.json"));
 
-void Candle::Draw()
-{
-  GameObject::Draw();
 }

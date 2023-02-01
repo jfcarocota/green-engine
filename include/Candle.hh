@@ -1,16 +1,15 @@
 #pragma once
-#include "GameObject.hh"
-#include "AnimationSystem.hh"
+#include "Components/EntityManager.hh"
+#include "Components/Component.hh"
+#include<box2d/box2d.h>
 
-class Candle : public GameObject
+
+class Candle : public Component
 {
 private:
-  AnimationSystem* animationSystem{};
+  b2World* world;
 public:
-  Candle(const char* textureUrl, float scale, float width, float height, int column, int row, float posX, float posY,
-  b2BodyType bodyType, b2World*& world, sf::RenderWindow*& window);
+  Candle(b2World*& world);
   ~Candle();
-
-  void Update(float& deltaTime) override;
-  void Draw() override;
+  void Initialize() override;
 };

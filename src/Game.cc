@@ -45,7 +45,9 @@ Game::Game()
   //candle1 = new Candle(ASSETS_SPRITES, 4.f, 16.f, 16.f, 6, 3, 500, 500, b2BodyType::b2_staticBody, world, window);
   tileGroup = new TileGroup(window, 12, 12, ASSETS_MAPS, 4.f, 16, 16, ASSETS_TILES);
   Entity& heroEntity{entityManager.AddEntity("hero")};
+  Entity& candle1{entityManager.AddEntity("candle1")};
   heroEntity.AddComponent<Hero>(200.f, world);
+  candle1.AddComponent<Candle>(world);
   /*TransformComponent& transform = entity.AddComponent<TransformComponent>(500.f, 300.f, 16.f, 16.f, 4.f);
   entity.AddComponent<SpriteComponent>("assets/sprites.png", transform, 0, 5);*/
   
