@@ -1,7 +1,8 @@
 #include "Components/RigidBodyComponent.hh"
 
 RigidBodyComponent::RigidBodyComponent(b2World*& world, b2BodyType bodyType, float density, float friction,
-float restitution, float angle, void* userData,  TransformComponent& transform, SpriteComponent& spriteComponent):
+float restitution, float angle, bool frezeRotation, void* userData,
+TransformComponent& transform, SpriteComponent& spriteComponent):
 transform(transform), spriteComponent(spriteComponent)
 {
   this->world = world;
@@ -26,6 +27,7 @@ transform(transform), spriteComponent(spriteComponent)
   fixtureDef->friction = friction;
   fixtureDef->restitution = restitution;
   fixture = body->CreateFixture(fixtureDef);
+  body->SetFixedRotation(frezeRotation);
 
   body->GetUserData().pointer = reinterpret_cast<uintptr_t>(userData);
 }

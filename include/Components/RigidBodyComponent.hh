@@ -21,7 +21,8 @@ private:
   sf::Vector2f trsPos{};
 public:
   RigidBodyComponent(b2World*& world, b2BodyType bodyType, float density, float friction,
-  float restitution, float angle, void* userData,  TransformComponent& transform, SpriteComponent& spriteComponent);
+  float restitution, float angle, bool frezeRotation, void* userData,
+  TransformComponent& transform, SpriteComponent& spriteComponent);
   ~RigidBodyComponent();
 
   b2Body* GetBody() const;
