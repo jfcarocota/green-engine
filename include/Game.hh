@@ -1,8 +1,6 @@
 #pragma once
 
 #include<SFML/Graphics.hpp>
-//#include "CommonHeaders.hh"
-#include "GameObject.hh"
 #include "ContactEventManager.hh"
 #include "DrawPhysics.hh"
 #include<box2d/box2d.h>

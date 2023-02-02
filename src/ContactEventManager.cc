@@ -1,5 +1,4 @@
 #include "ContactEventManager.hh"
-#include "GameObject.hh"
 #include<iostream>
 #include "Components/Component.hh"
 #include "Components/Entity.hh"
