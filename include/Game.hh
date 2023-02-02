@@ -18,7 +18,6 @@ private:
 
   void Update();
   void Render();
-  void Input();
   void MainLoop();
   void Destroy();
   void UpdatePhysics();

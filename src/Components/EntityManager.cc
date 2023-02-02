@@ -33,7 +33,6 @@ void EntityManager::Update(float& deltaTime)
     }
     else
     {
-      //Entity* temp{entity};
       entities.erase(std::remove(entities.begin(), entities.end(), entity), entities.end());
       delete entity;
     }

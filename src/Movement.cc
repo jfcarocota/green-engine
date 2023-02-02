@@ -3,9 +3,11 @@
 #include "AnimationClip.hh"
 #include "Components/EntityManager.hh"
 
-Movement::Movement(float moveSpeed)
+Movement::Movement(float moveSpeed, float stepsDelay, AudioClip stepsAudio)
 {
   this->moveSpeed = moveSpeed;
+  this->stepsDelay = stepsDelay;
+  this->stepsAudio = stepsAudio;
 }
 
 Movement::~Movement()
@@ -18,6 +20,7 @@ void Movement::Initialize()
   sprite = owner->GetComponent<SpriteComponent>();
   transform = owner->GetComponent<TransformComponent>();
   rigidbody = owner->GetComponent<RigidBodyComponent>();
+  audioListener = owner->GetComponent<AudioListenerComponent>();
 
   animator->AddAnimation("idle", AnimationClip("assets/animations/player/idle.json"));
   animator->AddAnimation("walk", AnimationClip("assets/animations/player/walk.json"));
@@ -31,11 +34,14 @@ void Movement::Update(float& deltaTime)
 
   if(std::abs(direction.x) > 0 || std::abs(direction.y) > 0)
   {
-    /*if(stepsTimer >= stepsDelay)
+    if(audioListener)
     {
-      audioSystem->Play("steps");
-      stepsTimer = 0.f;
-    }*/
+      if(stepsTimer >= stepsDelay)
+      {
+        audioListener->PlayOneShot(stepsAudio, 50.f);
+        stepsTimer = 0.f;
+      }
+    }
     animator->Play("walk");
   }
   else

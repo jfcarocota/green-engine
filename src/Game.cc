@@ -5,6 +5,7 @@
 #include "Components/SpriteComponent.hh"
 #include "Components/RigidBodyComponent.hh"
 #include "Components/AnimatorComponent.hh"
+#include "Components/AudioListenerComponent.hh"
 #include "Movement.hh"
 #include "FlipSprite.hh"
 #include "Components/Entity.hh"
@@ -50,7 +51,8 @@ Game::Game()
   hero.AddComponent<SpriteComponent>(ASSETS_SPRITES, 0, 5);
   hero.AddComponent<RigidBodyComponent>(world, b2BodyType::b2_dynamicBody, 1, 0, 0, 0.f, true, (void*) &hero);
   hero.AddComponent<AnimatorComponent>();
-  hero.AddComponent<Movement>(200.f);
+  hero.AddComponent<AudioListenerComponent>();
+  hero.AddComponent<Movement>(200.f, 0.01f, AudioClip("assets/audio/steps.ogg"));
   hero.AddComponent<FlipSprite>();
 
   candle1.AddComponent<TransformComponent>(500.f, 500.f, 16.f, 16.f, 4.f);
@@ -112,7 +114,6 @@ void Game::MainLoop()
     }
 
     UpdatePhysics();
-    Input();
     Update();
     Render();
   }
@@ -128,12 +129,6 @@ void Game::Render()
   entityManager.Render(*window);
   world->DebugDraw();
   window->display();
-}
-
-//Keyboard, joysticks, etc.
-void Game::Input()
-{
-
 }
 
 void Game::Destroy()

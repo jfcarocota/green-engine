@@ -1,19 +1,26 @@
 #include "AudioClip.hh"
 
-AudioClip::AudioClip(const char* audioUrl, float audioVolume)
+AudioClip::AudioClip()
 {
-  soundBuffer = new sf::SoundBuffer();
+
+}
+AudioClip::AudioClip(const char* audioUrl)
+{
   sound = new sf::Sound();
-  soundBuffer->loadFromFile(audioUrl);
-  sound->setBuffer(*soundBuffer);
-  sound->setVolume(audioVolume);
+  this->audioUrl = audioUrl;
+}
+void AudioClip::SetVolume(float volume)
+{
+  sound->setVolume(volume);
 }
 
 AudioClip::~AudioClip()
 {
 }
 
-void AudioClip::Play()
+void AudioClip::Play(sf::SoundBuffer& buffer)
 {
+  sound->setBuffer(buffer);
+  buffer.loadFromFile(audioUrl);
   sound->play();
 }

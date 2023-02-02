@@ -1,14 +1,17 @@
 #pragma once
 #include "SFML/Audio.hpp"
+#include<string>
 
 class AudioClip
 {
 private:
-  sf::SoundBuffer* soundBuffer{};
-  sf::Sound* sound;
+  std::string audioUrl{};
+  sf::Sound* sound{};
 public:
-  AudioClip(const char* audioUrl, float audioVolume);
+  AudioClip();
+  AudioClip(const char* audioUrl);
   ~AudioClip();
 
-  void Play();
+  void Play(sf::SoundBuffer& buffer);
+  void SetVolume(float volume);
 };
