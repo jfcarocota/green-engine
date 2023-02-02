@@ -16,11 +16,6 @@ TextObject* textObj1{new TextObject(ASSETS_FONT_ARCADECLASSIC, 14, sf::Color::Wh
 sf::Clock* gameClock{new sf::Clock()};
 float deltaTime{};
 
-Entity& hero{entityManager.AddEntity("hero")};
-Entity& candle1{entityManager.AddEntity("candle")};
-Entity& chest1{entityManager.AddEntity("chest")};
-//Entity& chest2{entityManager.AddEntity("chest")};
-
 std::vector<Entity*> activeEntities = std::vector<Entity*>();
 std::vector<Entity*> inactiveEntities = std::vector<Entity*>();
 
@@ -46,9 +41,14 @@ Game::Game()
 
   tileGroup = new TileGroup(window, 12, 12, ASSETS_MAPS, 4.f, 16, 16, ASSETS_TILES);
 
+  Entity& hero{entityManager.AddEntity("hero")};
+  Entity& candle1{entityManager.AddEntity("candle")};
+  Entity& chest1{entityManager.AddEntity("chest")};
+  Entity& chest2{entityManager.AddEntity("chest")};
+
   hero.AddComponent<TransformComponent>(500.f, 300.f, 16.f, 16.f, 4.f);
   hero.AddComponent<SpriteComponent>(ASSETS_SPRITES, 0, 5);
-  hero.AddComponent<RigidBodyComponent>(world, b2BodyType::b2_dynamicBody, 1, 0, 0, 0.f, true, (void*)&hero);
+  hero.AddComponent<RigidBodyComponent>(world, b2BodyType::b2_dynamicBody, 1, 0, 0, 0.f, true, (void*) &hero);
   hero.AddComponent<AnimatorComponent>();
   hero.AddComponent<Movement>(200.f);
   hero.AddComponent<FlipSprite>();
@@ -60,8 +60,12 @@ Game::Game()
   candle1Animator.AddAnimation("idle", AnimationClip("assets/animations/candle/idle.json"));
 
   chest1.AddComponent<TransformComponent>(300.f, 500.f, 16.f, 16.f, 4.f);
-  chest1.AddComponent<SpriteComponent>("assets/sprites.png", 6, 1);
+  chest1.AddComponent<SpriteComponent>(ASSETS_SPRITES, 6, 1);
   chest1.AddComponent<RigidBodyComponent>(world, b2BodyType::b2_staticBody, 1, 0, 0, 0.f, true, (void*) &chest1);
+
+  chest2.AddComponent<TransformComponent>(300.f, 300.f, 16.f, 16.f, 4.f);
+  chest2.AddComponent<SpriteComponent>(ASSETS_SPRITES, 6, 1);
+  chest2.AddComponent<RigidBodyComponent>(world, b2BodyType::b2_staticBody, 1, 0, 0, 0.f, true, (void*) &chest2);
 
   contactEventManager = new ContactEventManager();
 }
