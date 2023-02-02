@@ -4,6 +4,7 @@
 #include "Components/Component.hh"
 #include "Components/Entity.hh"
 #include "Components/EntityManager.hh"
+#include "Components/RigidBodyComponent.hh"
 
 ContactEventManager::ContactEventManager()
 {
@@ -24,7 +25,10 @@ void ContactEventManager::BeginContact(b2Contact* contact)
     std::cout << "Collision: " << actorA->name << ", " << actorB->name << std::endl;
     if(actorB->name.compare("chest") == 0)
     {
-      
+      actorB->Destroy();
+      //RigidBodyComponent& rb{*actorB->GetComponent<RigidBodyComponent>()};
+      //delete actorB;
+      //delete &rb;
     }
   }
 }

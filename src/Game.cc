@@ -20,6 +20,9 @@ Entity& hero{entityManager.AddEntity("hero")};
 Entity& candle1{entityManager.AddEntity("candle")};
 Entity& chest1{entityManager.AddEntity("chest")};
 
+std::vector<Entity*> activeEntities = std::vector<Entity*>();
+std::vector<Entity*> inactiveEntities = std::vector<Entity*>();
+
 TileGroup* tileGroup{};
 Tile* tile1{};
 
@@ -100,6 +103,15 @@ void Game::MainLoop()
 
 void Game::Render()
 {
+
+  /*for(auto& entity : entityManager.GetEntities())
+  {
+    if(!entity->IsActive())
+    {
+      delete entity;
+    }
+  }*/
+
   window->clear(sf::Color::Black);
 
   window->draw(*textObj1->GetText());

@@ -12,7 +12,10 @@ Entity::Entity(EntityManager& entityManager, std::string name): entityManager(en
 
 Entity::~Entity()
 {
-   
+   for(auto& component : components)
+   {
+      delete component;
+   }
 }
 
  void Entity::Update(float& deltaTime)
@@ -25,7 +28,7 @@ Entity::~Entity()
 
  void Entity::Destroy()
  {
-    this->isActive = false;
+   this->isActive = false;
  }
 
  void Entity::Render(sf::RenderWindow& window)

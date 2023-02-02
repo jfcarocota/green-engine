@@ -27,7 +27,14 @@ void EntityManager::Update(float& deltaTime)
 {
   for(auto& entity : entities)
   {
-    entity->Update(deltaTime);
+    if(entity->IsActive())
+    {
+      entity->Update(deltaTime);
+    }
+    else
+    {
+      delete entity;
+    }
   }
 }
 

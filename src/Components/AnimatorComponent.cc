@@ -1,4 +1,5 @@
 #include "Components/AnimatorComponent.hh"
+#include "Components/EntityManager.hh"
 
 AnimatorComponent::AnimatorComponent(SpriteComponent& sprite, TransformComponent& transform):
 sprite(sprite), transform(transform)
@@ -45,24 +46,27 @@ void AnimatorComponent::AddAnimation(std::string animationName, AnimationClip an
 
 void AnimatorComponent::Update(float& deltaTime)
 {
-  if(animations.size() > 0 && !currentAnimationName.empty())
+  if(&sprite && &transform)
   {
-    currentTime += deltaTime;
-    sprite.RebindRectTexture(animationIndex * transform.GetWidth(),
-    currentAnimation * transform.GetHeight(), transform.GetWidth(),
-    transform.GetHeight());
-
-    if(currentTime > animationDelay)
+    if(animations.size() > 0 && !currentAnimationName.empty())
     {
-      if(animationIndex == endFrame)
+      currentTime += deltaTime;
+      sprite.RebindRectTexture(animationIndex * transform.GetWidth(),
+      currentAnimation * transform.GetHeight(), transform.GetWidth(),
+      transform.GetHeight());
+
+      if(currentTime > animationDelay)
       {
-        animationIndex = startFrame;
+        if(animationIndex == endFrame)
+        {
+          animationIndex = startFrame;
+        }
+        else
+        {
+          animationIndex++;
+        }
+        currentTime = 0.f;
       }
-      else
-      {
-        animationIndex++;
-      }
-      currentTime = 0.f;
     }
   }
 }

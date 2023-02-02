@@ -10,6 +10,7 @@ Chest::Chest(b2World*& world): world(world)
 
 Chest::~Chest()
 {
+
 }
 
 void Chest::Initialize()

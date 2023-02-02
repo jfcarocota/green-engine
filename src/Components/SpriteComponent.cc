@@ -1,4 +1,5 @@
 #include "Components/SpriteComponent.hh"
+#include "Components/EntityManager.hh"
 
 SpriteComponent::SpriteComponent(const char* textureUrl, TransformComponent& transform, unsigned int col, unsigned int row):
 transform(transform)
@@ -22,7 +23,10 @@ SpriteComponent::~SpriteComponent()
 
 void SpriteComponent::Update(float& deltaTime)
 {
-  sprite.setPosition(transform.GetPosition());
+  if(&transform)
+  {
+    sprite.setPosition(transform.GetPosition());
+  }
 }
 
 void SpriteComponent::Render(sf::RenderWindow& window)
