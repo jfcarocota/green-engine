@@ -34,8 +34,6 @@ void EntityManager::Update(float& deltaTime)
     }
     else
     {
-      //entities.erase(std::remove(entities.begin(), entities.end(), entity), entities.end());
-      //delete entity;
       inactiveEntities.emplace_back(entity);
     }
   }
