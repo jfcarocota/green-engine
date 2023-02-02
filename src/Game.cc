@@ -46,13 +46,14 @@ Game::Game()
   Entity& candle1{entityManager.AddEntity("candle")};
   Entity& chest1{entityManager.AddEntity("chest")};
   Entity& chest2{entityManager.AddEntity("chest")};
+  Entity& chest3{entityManager.AddEntity("chest")};
 
   hero.AddComponent<TransformComponent>(500.f, 300.f, 16.f, 16.f, 4.f);
   hero.AddComponent<SpriteComponent>(ASSETS_SPRITES, 0, 5);
   hero.AddComponent<RigidBodyComponent>(world, b2BodyType::b2_dynamicBody, 1, 0, 0, 0.f, true, (void*) &hero);
   hero.AddComponent<AnimatorComponent>();
   hero.AddComponent<AudioListenerComponent>();
-  hero.AddComponent<Movement>(200.f, 0.01f, AudioClip("assets/audio/steps.ogg"));
+  hero.AddComponent<Movement>(200.f, 0.28f, AudioClip("assets/audio/steps.ogg"));
   hero.AddComponent<FlipSprite>();
 
   candle1.AddComponent<TransformComponent>(500.f, 500.f, 16.f, 16.f, 4.f);
@@ -65,9 +66,13 @@ Game::Game()
   chest1.AddComponent<SpriteComponent>(ASSETS_SPRITES, 6, 1);
   chest1.AddComponent<RigidBodyComponent>(world, b2BodyType::b2_staticBody, 1, 0, 0, 0.f, true, (void*) &chest1);
 
-  chest2.AddComponent<TransformComponent>(300.f, 300.f, 16.f, 16.f, 4.f);
+  chest2.AddComponent<TransformComponent>(300.f, 400.f, 16.f, 16.f, 4.f);
   chest2.AddComponent<SpriteComponent>(ASSETS_SPRITES, 6, 1);
   chest2.AddComponent<RigidBodyComponent>(world, b2BodyType::b2_staticBody, 1, 0, 0, 0.f, true, (void*) &chest2);
+
+  chest3.AddComponent<TransformComponent>(300.f, 300.f, 16.f, 16.f, 4.f);
+  chest3.AddComponent<SpriteComponent>(ASSETS_SPRITES, 6, 1);
+  chest3.AddComponent<RigidBodyComponent>(world, b2BodyType::b2_staticBody, 1, 0, 0, 0.f, true, (void*) &chest3);
 
   contactEventManager = new ContactEventManager();
 }

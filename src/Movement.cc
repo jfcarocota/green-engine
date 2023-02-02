@@ -8,6 +8,7 @@ Movement::Movement(float moveSpeed, float stepsDelay, AudioClip stepsAudio)
   this->moveSpeed = moveSpeed;
   this->stepsDelay = stepsDelay;
   this->stepsAudio = stepsAudio;
+  stepsTimer = stepsDelay;
 }
 
 Movement::~Movement()
@@ -36,9 +37,10 @@ void Movement::Update(float& deltaTime)
   {
     if(audioListener)
     {
+      stepsTimer += deltaTime;
       if(stepsTimer >= stepsDelay)
       {
-        audioListener->PlayOneShot(stepsAudio, 50.f);
+        audioListener->PlayOneShot(stepsAudio, 4.f);
         stepsTimer = 0.f;
       }
     }
