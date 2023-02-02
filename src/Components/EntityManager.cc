@@ -33,6 +33,8 @@ void EntityManager::Update(float& deltaTime)
     }
     else
     {
+      //Entity* temp{entity};
+      entities.erase(std::remove(entities.begin(), entities.end(), entity), entities.end());
       delete entity;
     }
   }
@@ -42,7 +44,10 @@ void EntityManager::Render(sf::RenderWindow& window)
 {
   for(auto& entity : entities)
   {
-    entity->Render(window);
+    if(entity->IsActive())
+    {
+      entity->Render(window);
+    }
   }
 }
 
