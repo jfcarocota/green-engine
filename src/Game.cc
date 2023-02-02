@@ -117,15 +117,6 @@ void Game::MainLoop()
 
 void Game::Render()
 {
-
-  /*for(auto& entity : entityManager.GetEntities())
-  {
-    if(!entity->IsActive())
-    {
-      delete entity;
-    }
-  }*/
-
   window->clear(sf::Color::Black);
 
   window->draw(*textObj1->GetText());
