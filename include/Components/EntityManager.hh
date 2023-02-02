@@ -8,6 +8,8 @@ class EntityManager
 {
 private:
   std::vector<Entity*> entities;
+  std::vector<Entity*> acttiveEntities;
+  std::vector<Entity*> inactiveEntities;
 public:
   EntityManager(/* args */);
   ~EntityManager();

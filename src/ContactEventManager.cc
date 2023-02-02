@@ -25,9 +25,6 @@ void ContactEventManager::BeginContact(b2Contact* contact)
     if(actorB->name.compare("chest") == 0)
     {
       actorB->Destroy();
-      //RigidBodyComponent& rb{*actorB->GetComponent<RigidBodyComponent>()};
-      //delete actorB;
-      //delete &rb;
     }
   }
 }

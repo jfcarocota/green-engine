@@ -28,16 +28,13 @@ void RigidBodyComponent::Initialize()
   sf::Vector2f size{transform->GetWidth() * transform->GetScale(), transform->GetHeight() * transform->GetScale()};
 
   //init body
-  
   bodyDef->position = b2Vec2(spritePos.x, spritePos.y);
   body = world->CreateBody(bodyDef);
 
   //define polygon shape
-  
   polygonShape->SetAsBox(size.x * 0.5f - b2_polygonRadius, size.y * 0.5f - b2_polygonRadius);
 
   //init fixture
-  
   fixtureDef->shape = polygonShape;
   fixtureDef->density = density;
   fixtureDef->friction = friction;

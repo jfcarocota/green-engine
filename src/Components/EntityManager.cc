@@ -30,12 +30,27 @@ void EntityManager::Update(float& deltaTime)
     if(entity->IsActive())
     {
       entity->Update(deltaTime);
+      acttiveEntities.emplace_back(entity);
     }
     else
     {
-      entities.erase(std::remove(entities.begin(), entities.end(), entity), entities.end());
+      //entities.erase(std::remove(entities.begin(), entities.end(), entity), entities.end());
+      //delete entity;
+      inactiveEntities.emplace_back(entity);
+    }
+  }
+  if(acttiveEntities.size() > 0)
+  {
+    entities = acttiveEntities;
+    acttiveEntities.clear();
+  }
+  if(inactiveEntities.size() > 0)
+  {
+    for(auto& entity : inactiveEntities)
+    {
       delete entity;
     }
+    inactiveEntities.clear();
   }
 }
 
