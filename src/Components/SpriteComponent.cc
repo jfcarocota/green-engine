@@ -1,8 +1,7 @@
 #include "Components/SpriteComponent.hh"
 #include "Components/EntityManager.hh"
 
-SpriteComponent::SpriteComponent(const char* textureUrl, TransformComponent& transform, unsigned int col, unsigned int row):
-transform(transform)
+SpriteComponent::SpriteComponent(const char* textureUrl, unsigned int col, unsigned int row)
 {
   this->textureUrl = textureUrl;
   this->col = col;
@@ -10,11 +9,19 @@ transform(transform)
 
   texture = sf::Texture();
   texture.loadFromFile(textureUrl);
-  sprite = sf::Sprite(texture, sf::IntRect(col * transform.GetWidth(), row * transform.GetHeight(), transform.GetWidth(), transform.GetHeight()));
-  sprite.setPosition(transform.GetPosition());
-  sprite.setScale(sf::Vector2f(transform.GetScale(), transform.GetScale()));
+}
+
+void SpriteComponent::Initialize()
+{
+  transform = owner->GetComponent<TransformComponent>();
+
+  sprite = sf::Sprite(texture, sf::IntRect(col * transform->GetWidth(), row * transform->GetHeight(),
+  transform->GetWidth(), transform->GetHeight()));
+
+  sprite.setPosition(transform->GetPosition());
+  sprite.setScale(sf::Vector2f(transform->GetScale(), transform->GetScale()));
   sprite.setColor(sf::Color::White);
-  sprite.setOrigin(transform.GetWidth() / 2, transform.GetHeight() / 2);
+  sprite.setOrigin(transform->GetWidth() / 2, transform->GetHeight() / 2);
 }
 
 SpriteComponent::~SpriteComponent()
@@ -25,7 +32,7 @@ void SpriteComponent::Update(float& deltaTime)
 {
   if(&transform)
   {
-    sprite.setPosition(transform.GetPosition());
+    sprite.setPosition(transform->GetPosition());
   }
 }
 
@@ -37,7 +44,7 @@ void SpriteComponent::Render(sf::RenderWindow& window)
 void SpriteComponent::SetFlipTexture(bool flipTexture)
 {
   this->flipTexture = flipTexture;
-  sprite.setScale(flipTexture ? -transform.GetScale(): transform.GetScale(), transform.GetScale());
+  sprite.setScale(flipTexture ? -transform->GetScale(): transform->GetScale(), transform->GetScale());
 }
 
 bool SpriteComponent::GetFliptexture() const

@@ -14,15 +14,21 @@ private:
   b2FixtureDef* fixtureDef{};
   b2Fixture* fixture;
   b2World* world;
-  TransformComponent& transform;
-  SpriteComponent& spriteComponent;
+  TransformComponent* transform;
+  SpriteComponent* spriteComponent;
 
   b2Vec2 bodyPos{};
   sf::Vector2f trsPos{};
+
+  float density{};
+  float friction{};
+  float restitution{};
+  float angle{};
+  bool frezeRotation{};
+  void* userData{};
 public:
   RigidBodyComponent(b2World*& world, b2BodyType bodyType, float density, float friction,
-  float restitution, float angle, bool frezeRotation, void* userData,
-  TransformComponent& transform, SpriteComponent& spriteComponent);
+  float restitution, float angle, bool frezeRotation, void* userData);
   ~RigidBodyComponent();
 
   b2Body* GetBody() const;
@@ -31,4 +37,5 @@ public:
   b2Vec2 GetPosition() const;
   void AddVelocity(b2Vec2 velocity);
   void Update(float& deltaTime) override;
+  void Initialize() override;
 };

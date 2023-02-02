@@ -9,14 +9,12 @@ class Movement: public Component
 {
 private:
   float moveSpeed;
-  RigidBodyComponent& rigidbody;
-  AnimatorComponent& animator;
-  TransformComponent& transform;
-  SpriteComponent& sprite;
+  RigidBodyComponent* rigidbody;
+  AnimatorComponent* animator;
+  TransformComponent* transform;
+  SpriteComponent* sprite;
 public:
-  Movement(float moveSpeed, RigidBodyComponent& rigidbody,
-  AnimatorComponent& animator, TransformComponent& transform,
-  SpriteComponent& sprite);
+  Movement(float moveSpeed);
   ~Movement();
   void Initialize() override;
   void Update(float& deltaTime) override;

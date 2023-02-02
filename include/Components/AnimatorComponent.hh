@@ -9,8 +9,8 @@
 class AnimatorComponent : public Component
 {
 private:
-  SpriteComponent& sprite;
-  TransformComponent& transform;
+  SpriteComponent* sprite;
+  TransformComponent* transform;
   std::string currentAnimationName{};
   std::map<std::string, AnimationClip> animations;
   AnimationClip currentAnimationClip;
@@ -23,12 +23,13 @@ private:
   float currentTime{};
 
 public:
-  AnimatorComponent(SpriteComponent& sprite, TransformComponent& transform);
+  AnimatorComponent();
   ~AnimatorComponent();
 
 
   void Play(std::string animationName);
   void AddAnimation(std::string animationName, AnimationClip animationClip);
+  void Initialize() override;
   void Update(float& deltaTime) override;
   void RefreshAnimationClip();
 };

@@ -1,11 +1,9 @@
 #include "Movement.hh"
 #include "InputSystem.hh"
 #include "AnimationClip.hh"
+#include "Components/EntityManager.hh"
 
-Movement::Movement(float moveSpeed, RigidBodyComponent& rigidbody,
-  AnimatorComponent& animator, TransformComponent& transform,
-  SpriteComponent& sprite):
-rigidbody(rigidbody), animator(animator), transform(transform), sprite(sprite)
+Movement::Movement(float moveSpeed)
 {
   this->moveSpeed = moveSpeed;
 }
@@ -16,15 +14,20 @@ Movement::~Movement()
 
 void Movement::Initialize()
 {
-  animator.AddAnimation("idle", AnimationClip("assets/animations/player/idle.json"));
-  animator.AddAnimation("walk", AnimationClip("assets/animations/player/walk.json"));
+  animator = owner->GetComponent<AnimatorComponent>();
+  sprite = owner->GetComponent<SpriteComponent>();
+  transform = owner->GetComponent<TransformComponent>();
+  rigidbody = owner->GetComponent<RigidBodyComponent>();
+
+  animator->AddAnimation("idle", AnimationClip("assets/animations/player/idle.json"));
+  animator->AddAnimation("walk", AnimationClip("assets/animations/player/walk.json"));
 }
 
 void Movement::Update(float& deltaTime)
 {
   sf::Vector2 direction = InputSystem::Axis() * moveSpeed;
 
-  rigidbody.AddVelocity(b2Vec2(direction.x, direction.y));
+  rigidbody->AddVelocity(b2Vec2(direction.x, direction.y));
 
   if(std::abs(direction.x) > 0 || std::abs(direction.y) > 0)
   {
@@ -33,10 +36,10 @@ void Movement::Update(float& deltaTime)
       audioSystem->Play("steps");
       stepsTimer = 0.f;
     }*/
-    animator.Play("walk");
+    animator->Play("walk");
   }
   else
   {
-    animator.Play("idle");
+    animator->Play("idle");
   }
 }

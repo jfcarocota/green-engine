@@ -1,13 +1,18 @@
 #include "Components/AnimatorComponent.hh"
 #include "Components/EntityManager.hh"
 
-AnimatorComponent::AnimatorComponent(SpriteComponent& sprite, TransformComponent& transform):
-sprite(sprite), transform(transform)
+AnimatorComponent::AnimatorComponent()
 {
 }
 
 AnimatorComponent::~AnimatorComponent()
 {
+}
+
+void AnimatorComponent::Initialize()
+{
+  sprite = owner->GetComponent<SpriteComponent>();
+  transform = owner->GetComponent<TransformComponent>();
 }
 
 void AnimatorComponent::RefreshAnimationClip()
@@ -51,9 +56,9 @@ void AnimatorComponent::Update(float& deltaTime)
     if(animations.size() > 0 && !currentAnimationName.empty())
     {
       currentTime += deltaTime;
-      sprite.RebindRectTexture(animationIndex * transform.GetWidth(),
-      currentAnimation * transform.GetHeight(), transform.GetWidth(),
-      transform.GetHeight());
+      sprite->RebindRectTexture(animationIndex * transform->GetWidth(),
+      currentAnimation * transform->GetHeight(), transform->GetWidth(),
+      transform->GetHeight());
 
       if(currentTime > animationDelay)
       {

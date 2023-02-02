@@ -1,12 +1,12 @@
 #include "CommonHeaders.hh"
-#include "Player.hh"
 #include "TileGroup.hh"
-#include "Candle.hh"
-#include "Hero.hh"
-#include "Chest.hh"
 #include "Components/EntityManager.hh"
 #include "Components/TransformComponent.hh"
 #include "Components/SpriteComponent.hh"
+#include "Components/RigidBodyComponent.hh"
+#include "Components/AnimatorComponent.hh"
+#include "Movement.hh"
+#include "FlipSprite.hh"
 #include "Components/Entity.hh"
 
 EntityManager entityManager;
@@ -19,6 +19,7 @@ float deltaTime{};
 Entity& hero{entityManager.AddEntity("hero")};
 Entity& candle1{entityManager.AddEntity("candle")};
 Entity& chest1{entityManager.AddEntity("chest")};
+//Entity& chest2{entityManager.AddEntity("chest")};
 
 std::vector<Entity*> activeEntities = std::vector<Entity*>();
 std::vector<Entity*> inactiveEntities = std::vector<Entity*>();
@@ -45,9 +46,22 @@ Game::Game()
 
   tileGroup = new TileGroup(window, 12, 12, ASSETS_MAPS, 4.f, 16, 16, ASSETS_TILES);
 
-  hero.AddComponent<Hero>(200.f, world);
-  candle1.AddComponent<Candle>(world);
-  chest1.AddComponent<Chest>(world);
+  hero.AddComponent<TransformComponent>(500.f, 300.f, 16.f, 16.f, 4.f);
+  hero.AddComponent<SpriteComponent>(ASSETS_SPRITES, 0, 5);
+  hero.AddComponent<RigidBodyComponent>(world, b2BodyType::b2_dynamicBody, 1, 0, 0, 0.f, true, (void*)&hero);
+  hero.AddComponent<AnimatorComponent>();
+  hero.AddComponent<Movement>(200.f);
+  hero.AddComponent<FlipSprite>();
+
+  candle1.AddComponent<TransformComponent>(500.f, 500.f, 16.f, 16.f, 4.f);
+  candle1.AddComponent<SpriteComponent>(ASSETS_SPRITES, 0, 5);
+  candle1.AddComponent<RigidBodyComponent>(world, b2BodyType::b2_staticBody, 1, 0, 0, 0.f, true, (void*) &candle1);
+  AnimatorComponent& candle1Animator = candle1.AddComponent<AnimatorComponent>();
+  candle1Animator.AddAnimation("idle", AnimationClip("assets/animations/candle/idle.json"));
+
+  chest1.AddComponent<TransformComponent>(300.f, 500.f, 16.f, 16.f, 4.f);
+  chest1.AddComponent<SpriteComponent>("assets/sprites.png", 6, 1);
+  chest1.AddComponent<RigidBodyComponent>(world, b2BodyType::b2_staticBody, 1, 0, 0, 0.f, true, (void*) &chest1);
 
   contactEventManager = new ContactEventManager();
 }

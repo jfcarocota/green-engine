@@ -6,14 +6,14 @@
 class SpriteComponent: public Component
 {
 private:
-  const TransformComponent& transform;
+  TransformComponent* transform;
   sf::Texture texture{};
   sf::Sprite sprite{};
   const char* textureUrl{};
   unsigned int col{}, row{};
   bool flipTexture{false};
 public:
-  SpriteComponent(const char* textureUrl, TransformComponent& transform, unsigned int col, unsigned int row);
+  SpriteComponent(const char* textureUrl, unsigned int col, unsigned int row);
   ~SpriteComponent();
   void Update(float& deltaTime) override;
   void Render(sf::RenderWindow& window) override;
@@ -21,4 +21,5 @@ public:
   bool GetFliptexture() const;
   sf::Vector2f GetOrigin() const;
   void RebindRectTexture(int col, int row, float width, float height);
+  void Initialize() override;
 };

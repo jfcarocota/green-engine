@@ -6,10 +6,11 @@
 class FlipSprite: public Component
 {
 private:
-  SpriteComponent& spriteComponent;
-  TransformComponent& transform;
+  SpriteComponent* spriteComponent;
+  TransformComponent* transform;
 public:
-  FlipSprite(SpriteComponent& spriteComponent, TransformComponent& transform);
+  FlipSprite();
   ~FlipSprite();
+  void Initialize() override;
   void Update(float& deltaTime) override;
 };
