@@ -74,9 +74,11 @@ Game::Game()
   chest3.AddComponent<RigidBodyComponent>(world, b2BodyType::b2_staticBody, 1, 0, 0, 0.f, true, (void*) &chest3);
 
   TransformComponent& btnPhysicsDebugTrs{buttonDebugPhysics.AddComponent<TransformComponent>(100.f, 100.f, 200.f, 100.f, 1.f)};
-  buttonDebugPhysics.AddComponent<Button>(btnPhysicsDebugTrs, 3.f, sf::Color::Blue, sf::Color::Black, [](){
+  Button& buttonPhysicsComp = buttonDebugPhysics.AddComponent<Button>(btnPhysicsDebugTrs, 0.f,
+  sf::Color::White, sf::Color::Transparent, [](){
     std::cout << "clicked" << std::endl;
   });
+  buttonPhysicsComp.SetTexture("assets/GUI/button.png");
 
   contactEventManager = new ContactEventManager();
 }

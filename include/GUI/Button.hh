@@ -2,6 +2,7 @@
 #include "Components/Component.hh"
 #include "Components/TransformComponent.hh"
 #include "Components/EntityManager.hh"
+#include<string>
 #include <functional>
 
 class Button: public Component
@@ -14,6 +15,7 @@ private:
   TransformComponent& transform;
   std::function<void()> onClickAction;
   bool clicked = false;
+  sf::Texture texture{};
 public:
   Button(TransformComponent& transform, float borderSize, sf::Color fillColor, sf::Color borderColor, std::function<void()> onClickAction);
   ~Button();
@@ -21,4 +23,5 @@ public:
   void Initialize() override;
   void Update(float& deltaTime) override;
   void Render(sf::RenderWindow& window) override;
+  void SetTexture(std::string texturePath);
 };
