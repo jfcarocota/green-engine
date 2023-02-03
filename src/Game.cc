@@ -9,6 +9,7 @@
 #include "Movement.hh"
 #include "FlipSprite.hh"
 #include "Components/Entity.hh"
+#include "GUI/Button.hh"
 
 EntityManager entityManager;
 
@@ -17,8 +18,6 @@ TextObject* textObj1{new TextObject(ASSETS_FONT_ARCADECLASSIC, 14, sf::Color::Wh
 sf::Clock* gameClock{new sf::Clock()};
 float deltaTime{};
 
-std::vector<Entity*> activeEntities = std::vector<Entity*>();
-std::vector<Entity*> inactiveEntities = std::vector<Entity*>();
 
 TileGroup* tileGroup{};
 Tile* tile1{};
@@ -29,8 +28,6 @@ uint32 flags{};
     //flags += b2Draw::e_centerOfMassBit;
     //flags += b2Draw::e_pairBit;
     //flags += b2Draw::e_jointBit;
-
-Animation* lightIdle{};
 
 Game::Game()
 {
@@ -47,6 +44,8 @@ Game::Game()
   Entity& chest1{entityManager.AddEntity("chest")};
   Entity& chest2{entityManager.AddEntity("chest")};
   Entity& chest3{entityManager.AddEntity("chest")};
+
+  Entity& buttonDebugPhysics{entityManager.AddEntity("button")};
 
   hero.AddComponent<TransformComponent>(500.f, 300.f, 16.f, 16.f, 4.f);
   hero.AddComponent<SpriteComponent>(ASSETS_SPRITES, 0, 5);
@@ -73,6 +72,11 @@ Game::Game()
   chest3.AddComponent<TransformComponent>(300.f, 300.f, 16.f, 16.f, 4.f);
   chest3.AddComponent<SpriteComponent>(ASSETS_SPRITES, 6, 1);
   chest3.AddComponent<RigidBodyComponent>(world, b2BodyType::b2_staticBody, 1, 0, 0, 0.f, true, (void*) &chest3);
+
+  TransformComponent& btnPhysicsDebugTrs{buttonDebugPhysics.AddComponent<TransformComponent>(100.f, 100.f, 20.f, 10.f, 1.f)};
+  buttonDebugPhysics.AddComponent<Button>(btnPhysicsDebugTrs, 3.f, sf::Color::Blue, sf::Color::Black, [](){
+    std::cout << "clicked" << std::endl;
+  });
 
   contactEventManager = new ContactEventManager();
 }
