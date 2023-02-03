@@ -75,8 +75,9 @@ Game::Game()
 
   TransformComponent& btnPhysicsDebugTrs{buttonDebugPhysics.AddComponent<TransformComponent>(100.f, 100.f, 200.f, 100.f, 1.f)};
   Button& buttonPhysicsComp = buttonDebugPhysics.AddComponent<Button>(btnPhysicsDebugTrs, 0.f,
-  sf::Color::White, sf::Color::Transparent, [](){
+  sf::Color::White, sf::Color::Transparent, [=](){
     std::cout << "clicked" << std::endl;
+    debugPhysics = !debugPhysics;
   });
   buttonPhysicsComp.SetTexture("assets/GUI/button.png");
 
@@ -138,7 +139,10 @@ void Game::Render()
   window->draw(*textObj1->GetText());
   tileGroup->Draw();
   entityManager.Render(*window);
-  world->DebugDraw();
+  if(debugPhysics)
+  {
+    world->DebugDraw();
+  }
   window->display();
 }
 
