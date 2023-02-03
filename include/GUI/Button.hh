@@ -13,6 +13,7 @@ private:
   sf::Color borderColor;
   TransformComponent& transform;
   std::function<void()> onClickAction;
+  bool clicked = false;
 public:
   Button(TransformComponent& transform, float borderSize, sf::Color fillColor, sf::Color borderColor, std::function<void()> onClickAction);
   ~Button();

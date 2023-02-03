@@ -31,7 +31,11 @@ void Button::Initialize()
 
 void Button::OnClick()
 {
-  onClickAction();
+  if(!clicked)
+  {
+    clicked = true;
+    onClickAction();
+  }
 }
 
 void Button::Update(float& deltaTime)
@@ -53,5 +57,13 @@ void Button::Render(sf::RenderWindow& window)
         OnClick();
       }
     }
+    else
+    {
+      clicked = false;
+    }
+  }
+  else
+  {
+    clicked = false;
   }
 }

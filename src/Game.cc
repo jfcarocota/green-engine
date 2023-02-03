@@ -73,7 +73,7 @@ Game::Game()
   chest3.AddComponent<SpriteComponent>(ASSETS_SPRITES, 6, 1);
   chest3.AddComponent<RigidBodyComponent>(world, b2BodyType::b2_staticBody, 1, 0, 0, 0.f, true, (void*) &chest3);
 
-  TransformComponent& btnPhysicsDebugTrs{buttonDebugPhysics.AddComponent<TransformComponent>(100.f, 100.f, 20.f, 10.f, 1.f)};
+  TransformComponent& btnPhysicsDebugTrs{buttonDebugPhysics.AddComponent<TransformComponent>(100.f, 100.f, 200.f, 100.f, 1.f)};
   buttonDebugPhysics.AddComponent<Button>(btnPhysicsDebugTrs, 3.f, sf::Color::Blue, sf::Color::Black, [](){
     std::cout << "clicked" << std::endl;
   });
