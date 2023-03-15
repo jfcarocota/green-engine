@@ -1,3 +1,7 @@
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://github.com/jfcarocota/sfml-gameengine/blob/main/LICENSE)
+
+# Description
+
 This is an opensource project that I use to teach my students C++ and game development. All the purposes are for education. The thecnology used are totally opensource.
 
 # Set up and download the project
