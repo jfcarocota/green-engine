@@ -5,7 +5,7 @@
 
 # Description
 
-This is an opensource project that I use to teach my students C++ and game development. All the purposes are for education. The thecnology used are totally opensource.
+This is an opensource project that I use to teach my students C++ and game development. All the purposes are for education. The technology used are totally opensource.
 
 # Set up and download the project
 
