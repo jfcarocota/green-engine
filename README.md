@@ -1,6 +1,6 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://github.com/jfcarocota/sfml-gameengine/blob/main/LICENSE) 
-[![Made With - C++](https://img.shields.io/badge/Made_With-C%2B%2B-blue?logo=<svg+role%3D"img"+viewBox%3D"0+0+24+24"+xmlns%3D"http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg"><title>CBS<%2Ftitle><path+d%3D"M12+24C5.314+24+.068+18.587.068+11.949.068+5.413+5.314+0+12+0s11.932+5.413+11.932+11.949C23.932+18.587+18.686+24+12+24zm0-5.106c5.452+0+9.36-3.473+11.109-6.945C21.875+9.294+18.172+5.106+12+5.106c-5.452+0-9.36+3.37-11.109+6.843C2.537+15.42+6.548+18.894+12+18.894zm0-.613c-3.497+0-6.377-2.86-6.377-6.332S8.503+5.617+12+5.617s6.377+2.86+6.377+6.332c0+3.574-2.88+6.332-6.377+6.332Z"%2F><%2Fsvg>&logoColor=%2300599C)](https://www.sfml-dev.org/index.php)
 [![Made With - SFML](https://img.shields.io/badge/Made_With-SFML-2ea44f?logo=%238CC445)](https://www.sfml-dev.org/index.php)
+[![Made With - Box2D](https://img.shields.io/static/v1?label=Made+With&message=Box2D&color=%23a72e2f)](https://box2d.org/documentation/md__d_1__git_hub_box2d_docs__f_a_q.html)
 
 # Description
 
