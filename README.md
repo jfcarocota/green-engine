@@ -14,9 +14,9 @@ Once all this steps are done just downloads or clone the project and run it usin
 
 Just open the root project with vscode and press F5. If this is not working first check your paths in task.json and then run again.
 
-![image-20230314180649770](C:\Users\Usuario\AppData\Roaming\Typora\typora-user-images\image-20230314180649770.png)
+![image-20230314180649770](https://user-images.githubusercontent.com/6539267/225180512-2786fb37-387d-46e6-bc9d-95bdddcd1758.png)
 
-![image-20230314180816329](C:\Users\Usuario\AppData\Roaming\Typora\typora-user-images\image-20230314180816329.png)
+![image-20230314180816329](https://user-images.githubusercontent.com/6539267/225180538-3bd709bc-fd06-4c0f-abdb-8e0f8e643ab1.png)
 
 Task file
 
@@ -64,6 +64,6 @@ Compare with your paths on your pc. Then this execute the next command.
 
 Result
 
-![image-20230314181646666](C:\Users\Usuario\AppData\Roaming\Typora\typora-user-images\image-20230314181646666.png)
+![image-20230314181646666](https://user-images.githubusercontent.com/6539267/225180566-bb00bfec-9af7-41f7-8c2e-d66294822fa3.png)
 
 You can try collect chest, touch candles or click the empty button. This all the basic behaviors of the engine.
