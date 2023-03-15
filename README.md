@@ -1,4 +1,5 @@
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://github.com/jfcarocota/sfml-gameengine/blob/main/LICENSE)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://github.com/jfcarocota/sfml-gameengine/blob/main/LICENSE) 
+[![Made With - SFML](https://img.shields.io/badge/Made_With-SFML-2ea44f?logo=%238CC445)](https://www.sfml-dev.org/index.php)
 
 # Description
 
