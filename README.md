@@ -77,4 +77,4 @@ You can try collect chest, touch candles or click the empty button. This all the
 
 # Use the Engine
 
-
+The entinre engine is based on Entity Component System Paradigm, so understand ECS is important for create your own Components and use it with your entities.
