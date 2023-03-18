@@ -80,4 +80,5 @@ You can try collect chest, touch candles or click the empty button. This all the
 The entinre engine is based on Entity Component System Paradigm, so understand ECS is important for create your own Components and use it with your entities.
 
 You will notice the project comes with some basic sample components and assets, this are the basic game project stuffs when you run the executable file.
+
 ![image](https://user-images.githubusercontent.com/6539267/226077642-8dea029c-6c46-403c-98e4-b6136c587074.png)
