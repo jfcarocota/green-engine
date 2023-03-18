@@ -9,9 +9,9 @@ This is an opensource project that I use to teach my students C++ and game devel
 
 # Set up and download the project
 
-The first step is get all de stuffs needed for running the project. The core of this is [SFML](https://www.sfml-dev.org/download/sfml/2.5.1/) , a computer graphics library base on OpenGL API. We recommend [GCC 7.3.0 MinGW (SEH) - 64-bit](https://www.sfml-dev.org/files/SFML-2.5.1-windows-gcc-7.3.0-mingw-64-bit.zip) version because the project use the compiler g++ by GNU how is included with MinGW.
+The first step is get all de stuffs needed for running the project. The core of this is [SFML](https://www.sfml-dev.org/download/sfml/2.5.1/) , a computer graphics library base on OpenGL API. Also is not necessary download it beacause is in included the engine, but if you want to test SFML, we recommend [GCC 7.3.0 MinGW (SEH) - 64-bit](https://www.sfml-dev.org/files/SFML-2.5.1-windows-gcc-7.3.0-mingw-64-bit.zip) version because the project use the compiler g++ by GNU how is included with MinGW.
 
-Depending of you OS your gonna need donwload a version of the compiler g++ by [MinGW](https://www.mingw-w64.org/downloads/). This project was created on windows so we recommend donwload directly the project of MinGW or use MSYS2 who contains MinGW inside. Next step is config you Enviroment Variable for g++ inside de binaries directory of your MinGW Install folder.
+Depending of your OS you are going to need download a version of the compiler g++ by [MinGW](https://www.mingw-w64.org/downloads/). This project was created on windows so we recommend donwload directly the project of MinGW or use MSYS2 who contains MinGW inside. Next step is config you Enviroment Variable for g++ inside de binaries directory of your MinGW Install folder.
 
 Once all this steps are done just downloads or clone the project and run it using visual studio code. Be sure of the a look at task.json file, who contains all the configs for build and run the project with g++ console commands.
 
