@@ -7,7 +7,7 @@
 
 This is an opensource project that I use to teach my students C++ and game development. All the purposes are for education. The technology used are totally opensource.
 
-# Set up and download the project
+# Setup and download the project
 
 The first step is get all de stuffs needed for running the project. The core of this is [SFML](https://www.sfml-dev.org/download/sfml/2.5.1/) , a computer graphics library base on OpenGL API. Also is not necessary download it beacause is in included the engine, but if you want to test SFML, we recommend [GCC 7.3.0 MinGW (SEH) - 64-bit](https://www.sfml-dev.org/files/SFML-2.5.1-windows-gcc-7.3.0-mingw-64-bit.zip) version because the project use the compiler g++ by GNU how is included with MinGW.
 
