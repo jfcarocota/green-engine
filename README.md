@@ -82,3 +82,13 @@ The entinre engine is based on Entity Component System Paradigm, so understand E
 You will notice the project comes with some basic sample components and assets, this are the basic game project stuffs when you run the executable file.
 
 ![image](https://user-images.githubusercontent.com/6539267/226077642-8dea029c-6c46-403c-98e4-b6136c587074.png)
+
+For all example we recommend open Game.cc file.
+
+## Create entities
+
+The most basic way is just call the Entity class and generate them from entity manager (similar to factory pattern).
+
+```cc
+Entity& hero{entityManager.AddEntity("hero")};
+```
