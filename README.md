@@ -92,3 +92,99 @@ The most basic way is just call the Entity class and generate them from entity m
 ```cc
 Entity& hero{entityManager.AddEntity("hero")};
 ```
+
+## Create components
+
+The components are scripts who lives inside an entity and represents a Behaviour for that entity. A component has an owner who represents the entity owner of the componet.
+
+Example for a Movement behaviour Component who is used by Hero entity.
+
+Header File
+```cc
+#pragma once
+#include "Components/Component.hh"
+#include "Components/RigidBodyComponent.hh"
+#include "Components/AnimatorComponent.hh"
+#include "Components/TransformComponent.hh"
+#include "Components/SpriteComponent.hh"
+#include "Components/AudioListenerComponent.hh"
+#include "AudioClip.hh"
+
+class Movement: public Component
+{
+private:
+  float moveSpeed;
+  RigidBodyComponent* rigidbody;
+  AnimatorComponent* animator;
+  TransformComponent* transform;
+  SpriteComponent* sprite;
+  AudioListenerComponent* audioListener;
+
+  AudioClip stepsAudio;
+
+  float stepsTimer{};
+  float stepsDelay{};
+public:
+  Movement(float moveSpeed, float stepsDelay, AudioClip stepsAudio);
+  ~Movement();
+  void Initialize() override;
+  void Update(float& deltaTime) override;
+};
+```
+C file
+
+```cc
+#include "Movement.hh"
+#include "InputSystem.hh"
+#include "AnimationClip.hh"
+#include "Components/EntityManager.hh"
+
+Movement::Movement(float moveSpeed, float stepsDelay, AudioClip stepsAudio)
+{
+  this->moveSpeed = moveSpeed;
+  this->stepsDelay = stepsDelay;
+  this->stepsAudio = stepsAudio;
+  stepsTimer = stepsDelay;
+}
+
+Movement::~Movement()
+{
+}
+
+void Movement::Initialize()
+{
+  animator = owner->GetComponent<AnimatorComponent>();
+  sprite = owner->GetComponent<SpriteComponent>();
+  transform = owner->GetComponent<TransformComponent>();
+  rigidbody = owner->GetComponent<RigidBodyComponent>();
+  audioListener = owner->GetComponent<AudioListenerComponent>();
+
+  animator->AddAnimation("idle", AnimationClip("assets/animations/player/idle.json"));
+  animator->AddAnimation("walk", AnimationClip("assets/animations/player/walk.json"));
+}
+
+void Movement::Update(float& deltaTime)
+{
+  sf::Vector2 direction = InputSystem::Axis() * moveSpeed;
+
+  rigidbody->AddVelocity(b2Vec2(direction.x, direction.y));
+
+  if(std::abs(direction.x) > 0 || std::abs(direction.y) > 0)
+  {
+    if(audioListener)
+    {
+      stepsTimer += deltaTime;
+      if(stepsTimer >= stepsDelay)
+      {
+        audioListener->PlayOneShot(stepsAudio, 4.f);
+        stepsTimer = 0.f;
+      }
+    }
+    animator->Play("walk");
+  }
+  else
+  {
+    animator->Play("idle");
+  }
+}
+```
