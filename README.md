@@ -188,3 +188,16 @@ void Movement::Update(float& deltaTime)
   }
 }
 ```
+
+## Add compoennts to entities
+
+Here is an example of all the components inside the entity Hero.
+```cc
+hero.AddComponent<TransformComponent>(500.f, 300.f, 16.f, 16.f, 4.f);
+  hero.AddComponent<SpriteComponent>(ASSETS_SPRITES, 0, 5);
+  hero.AddComponent<RigidBodyComponent>(world, b2BodyType::b2_dynamicBody, 1, 0, 0, 0.f, true, (void*) &hero);
+  hero.AddComponent<AnimatorComponent>();
+  hero.AddComponent<AudioListenerComponent>();
+  hero.AddComponent<Movement>(200.f, 0.28f, AudioClip("assets/audio/steps.ogg"));
+  hero.AddComponent<FlipSprite>();
+```
