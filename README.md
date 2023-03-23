@@ -189,7 +189,7 @@ void Movement::Update(float& deltaTime)
 }
 ```
 
-## Add compoennts to entities
+## Add compoents to entities
 
 Here is an example of all the components inside the entity Hero.
 ```cc
