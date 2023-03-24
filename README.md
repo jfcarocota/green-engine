@@ -204,3 +204,5 @@ hero.AddComponent<TransformComponent>(500.f, 300.f, 16.f, 16.f, 4.f);
 ## Life cycle
 
 All components have 3 basic behaviours. Initialize, Update and Render. As their names say is similar to Unity, Unreal or Godot. Initialize starts once at the beginning. Update fires once per frame and Render is Similar to Update but it's created for drawing stuffs and clear the screen, Update is just for motion and refeshing data.
+
+Caro. J. (2023) Create Your Own Game Engine With C++ and ECS pattern
