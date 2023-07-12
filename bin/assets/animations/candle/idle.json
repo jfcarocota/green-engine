@@ -1,0 +1,10 @@
+{
+  "actor": "candle",
+  "animation-name": "idle",
+  "animation":{
+    "startFrame": 6,
+    "endFrame": 11,
+    "delay": 0.1,
+    "row": 3
+  }
+}
