@@ -8,10 +8,12 @@
 			"args": [
 				"-std=c++17",
 				"-Iinclude",
+				"-Iimgui",
 				"-Isrc/dynamics",
 				"-Isrc/lib_json",
 				"src/Components/*.cc",
 				"src/*cc",
+				"imgui/*.cpp",
 				"src/GUI/*.cc",
 				"src/collision/*.cpp",
 				"src/common/*.cpp",
