@@ -13,6 +13,7 @@
 //-----------------------------------------------------------------------------
 
 #pragma once
+#include "imconfig-SFML.h"
 
 //---- Define assertion handler. Defaults to calling assert().
 // If your macro uses multiple statements, make sure is enclosed in a 'do { .. } while (0)' block so it can be used as a single statement.
@@ -127,36 +128,3 @@ namespace ImGui
     void MyFunction(const char* name, MyMatrix44* mtx);
 }
 */
-
-// Add this to your imconfig.h
-
-#include <SFML/System/Vector2.hpp>
-#include <SFML/Graphics/Color.hpp>
-
-#include "imgui-SFML_export.h"
-
-#define IM_VEC2_CLASS_EXTRA                                             
-    template <typename T>                                               
-    ImVec2(const sf::Vector2<T>& v) {                                   
-        x = static_cast<float>(v.x);                                    
-        y = static_cast<float>(v.y);                                    
-    }                                                                   
-                                                                        
-    template <typename T>                                               
-    operator sf::Vector2<T>() const {                                   
-        return sf::Vector2<T>(x, y);                                    
-    }
-
-#define IM_VEC4_CLASS_EXTRA                                             
-    ImVec4(const sf::Color & c)                                         
-        : ImVec4(c.r / 255.f, c.g / 255.f, c.b / 255.f, c.a / 255.f) {  
-    }                                                                   
-    operator sf::Color() const {                                        
-        return sf::Color(                                               
-            static_cast<sf::Uint8>(x * 255.f),                          
-            static_cast<sf::Uint8>(y * 255.f),                          
-            static_cast<sf::Uint8>(z * 255.f),                          
-            static_cast<sf::Uint8>(w * 255.f));                         
-    }
-
-#define ImTextureID unsigned int

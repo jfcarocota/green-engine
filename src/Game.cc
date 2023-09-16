@@ -10,6 +10,9 @@
 #include "FlipSprite.hh"
 #include "Components/Entity.hh"
 #include "GUI/Button.hh"
+#include "imgui.h"
+#include "imgui-SFML.h"
+
 
 EntityManager entityManager;
 
