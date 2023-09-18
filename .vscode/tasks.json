@@ -19,8 +19,8 @@
 				"src/rope/*.cpp",
 				"src/lib_json/*.cpp",
 				"-o",
-				"bin/game.exe",
-				"lib/*.a"
+				"bin/game.app",
+				"lib/*.dylib"
 			],
 			"options": {
 				"cwd": "${workspaceFolder}"

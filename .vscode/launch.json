@@ -5,17 +5,16 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "(gdb) Iniciar",
+      "name": "(lldb) Iniciar",
       "type": "cppdbg",
       "request": "launch",
-      "program": "${workspaceFolder}/bin/game.exe",
+      "program": "${workspaceFolder}/bin/game.app",
       "args": [],
       "stopAtEntry": false,
       "cwd": "${workspaceFolder}",
       "environment": [],
       "externalConsole": true,
-      "MIMode": "gdb",
-      "miDebuggerPath": "gdb",
+      "MIMode": "lldb",
       "setupCommands": [
         {
           "description": "Habilitar la impresión con sangría para gdb",
