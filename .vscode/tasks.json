@@ -19,7 +19,7 @@
 				"src/rope/*.cpp",
 				"src/lib_json/*.cpp",
 				"-o",
-				"bin/game.app",
+				"bin/game",
 				"lib/*.dylib"
 			],
 			"options": {

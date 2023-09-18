@@ -8,7 +8,7 @@
       "name": "(lldb) Iniciar",
       "type": "cppdbg",
       "request": "launch",
-      "program": "${workspaceFolder}/bin/game.app",
+      "program": "${workspaceFolder}/bin/game",
       "args": [],
       "stopAtEntry": false,
       "cwd": "${workspaceFolder}",
