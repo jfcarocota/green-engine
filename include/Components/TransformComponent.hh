@@ -13,7 +13,7 @@ private:
 public:
   TransformComponent(float posX, float posY, float width, float height, float scale);
   ~TransformComponent();
-  void Initialize();
+  void Initialize() override;
   void Update(float& deltaTime) override;
   float GetWidth() const;
   float GetHeight() const;

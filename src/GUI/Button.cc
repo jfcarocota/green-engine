@@ -16,12 +16,9 @@ Button::~Button()
 
 void Button::SetTexture(std::string texturePath)
 {
-  if(&rectangleShape)
-  {
-    texture = sf::Texture();
-    texture.loadFromFile(texturePath);
-    rectangleShape.setTexture(&texture);
-  }
+  texture = sf::Texture();
+  texture.loadFromFile(texturePath);
+  rectangleShape.setTexture(&texture);
 }
 
 void Button::Initialize()

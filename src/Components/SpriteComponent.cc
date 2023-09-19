@@ -30,10 +30,7 @@ SpriteComponent::~SpriteComponent()
 
 void SpriteComponent::Update(float& deltaTime)
 {
-  if(&transform)
-  {
-    sprite.setPosition(transform->GetPosition());
-  }
+  sprite.setPosition(transform->GetPosition());
 }
 
 void SpriteComponent::Render(sf::RenderWindow& window)

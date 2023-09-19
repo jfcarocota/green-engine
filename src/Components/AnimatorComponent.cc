@@ -51,27 +51,24 @@ void AnimatorComponent::AddAnimation(std::string animationName, AnimationClip an
 
 void AnimatorComponent::Update(float& deltaTime)
 {
-  if(&sprite && &transform)
+  if(animations.size() > 0 && !currentAnimationName.empty())
   {
-    if(animations.size() > 0 && !currentAnimationName.empty())
-    {
-      currentTime += deltaTime;
-      sprite->RebindRectTexture(animationIndex * transform->GetWidth(),
-      currentAnimation * transform->GetHeight(), transform->GetWidth(),
-      transform->GetHeight());
+    currentTime += deltaTime;
+    sprite->RebindRectTexture(animationIndex * transform->GetWidth(),
+    currentAnimation * transform->GetHeight(), transform->GetWidth(),
+    transform->GetHeight());
 
-      if(currentTime > animationDelay)
+    if(currentTime > animationDelay)
+    {
+      if(animationIndex == endFrame)
       {
-        if(animationIndex == endFrame)
-        {
-          animationIndex = startFrame;
-        }
-        else
-        {
-          animationIndex++;
-        }
-        currentTime = 0.f;
+        animationIndex = startFrame;
       }
+      else
+      {
+        animationIndex++;
+      }
+      currentTime = 0.f;
     }
   }
 }
