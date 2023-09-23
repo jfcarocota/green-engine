@@ -1,4 +1,5 @@
 #include "CommonHeaders.hh"
+#include <steam/steam_api.h>
 #include "TileGroup.hh"
 #include "Components/EntityManager.hh"
 #include "Components/TransformComponent.hh"
@@ -31,6 +32,16 @@ uint32 flags{};
 
 Game::Game()
 {
+  if(SteamAPI_Init())
+  {
+    std::cout << "Steam working" << std::endl;
+    ISteamFriends* steamFriend{SteamFriends()};
+    std::cout << "Steam username: " << steamFriend->GetPersonaName() << std::endl;
+  }
+  else
+  {
+    std::cout << "Steam not working";
+  }
   window = new sf::RenderWindow(sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), GAME_NAME);
   event = new sf::Event();
   gravity = new b2Vec2(0.f, 0.f);
