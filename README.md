@@ -17,7 +17,7 @@ Depending of your OS you are going to need download a version of the compiler g+
 
 Once all this steps are done just downloads or clone the project and run it using visual studio code. Be sure of the a look at task.json file, who contains all the configs for build and run the project with g++ console commands.
 
-`git clone https://github.com/jfcarocota/sfml-gameengine.git`
+`git clone https://github.com/jfcarocota/green-engine.git`
 
 # Run the project
 
